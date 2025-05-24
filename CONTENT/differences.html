@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+
+
+
+
+<style>
+.myheader {
+  background-image: url("https://github.com/holtzy/Crypto-Arbitrage/raw/master/img/area_bitcoin_fadded_long.png");
+    min-height: 400px; 
+    background-size: 10% 100%; !important
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+  
+    height: 10%; !important
+    width: 100% !important;
+  }
+.mytitle{
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+  font-size: 200%;
+  font-weight: 500;
+  letter-spacing: 4px;
+  }   
+</style>
+
+<div class="myheader" style="text-align: center;">
+  <br>
+  <div style="text-align: left; margin-left: 5%"><a href="https://holtzy.github.io/Crypto-Arbitrage/">HOME</a></div>
+  <br><br>
+  <br><br>
+  <p class="mytitle">Comparing crypto prices between exchanges</p>
+  <p style="color: grey; font-size: 16px;">Are there differences? How big? How often? on which exchange and currency?</p>
+  <br>
+  <br>
+  <br><br>
+</div>
+
+
+
+
+
+<title></title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script src="libs/navigation-1.1/codefolding.js"></script>
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.7.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotlyjs-1.29.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.29.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Show Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="mycontent">
+<h1 id="data">Data</h1>
+<hr />
+<p>Prices of <code>5 cryto currencies</code> have been harvested for <code>2 weeks</code> on <code>5 different exchanges</code> every <code>few seconds</code> as described <a href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/public_API.html">here</a>. About <code>800,000 data points</code> are available, allowing to compare prices between exchanges at a high resolution.</p>
+<p><br></p>
+<p>Here is an overview of the Etherum price on the period on the 5 exchanges:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Library</span>
+<span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(DT)
+<span class="kw">library</span>(plotly)
+<span class="kw">library</span>(hrbrthemes)
+<span class="kw">library</span>(viridis)
+<span class="kw">library</span>(lubridate)
+
+<span class="co"># Load result</span>
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata&quot;</span>))
+Ticker<span class="op">$</span>last &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(Ticker<span class="op">$</span>last)
+<span class="co">#Ticker= head(Ticker, 100000)</span>
+
+<span class="co"># Plot</span>
+p &lt;-<span class="st"> </span>Ticker <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(symbol<span class="op">==</span><span class="st">&quot;ETHEUR&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(last<span class="op">&gt;</span><span class="dv">400</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># delete a weird value</span>
+<span class="st">  </span><span class="kw">ggplot</span>( <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>last, <span class="dt">color=</span>platform, <span class="dt">group=</span>platform)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>( <span class="dt">size=</span><span class="fl">0.8</span>, <span class="dt">size=</span><span class="fl">0.4</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>, <span class="dt">name=</span><span class="st">&quot;Exchange&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Etherum price&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Day (February)&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_ipsum</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 day&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%d&quot;</span>, <span class="dt">minor_breaks=</span><span class="ot">NULL</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Etherum price evolution for 4 exchanges&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>( <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>))
+p</code></pre></div>
+<p><img src="differences_files/figure-html/load_data-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save the plot for talk</span>
+<span class="kw">ggsave</span>(p, <span class="dt">file=</span><span class="st">&quot;IMG/etherum_evolution.png&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">4</span>)</code></pre></div>
+<p>There is a very high correlation between exchange prices. But if we zoom on the first 1,000 data points, a few discrepancies appear:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot</span>
+p &lt;-<span class="st"> </span>Ticker <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(symbol<span class="op">==</span><span class="st">&quot;ETHEUR&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(last<span class="op">&gt;</span><span class="dv">400</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># delete a weird value</span>
+<span class="st">  </span><span class="kw">head</span>(<span class="dv">1000</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>( <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>last, <span class="dt">color=</span>platform, <span class="dt">group=</span>platform)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_line</span>( <span class="dt">size=</span><span class="fl">0.8</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>, <span class="dt">name=</span><span class="st">&quot;Exchange&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Etherum price&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_ipsum</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;zoom on the 1000 first data points&quot;</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>( <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>)) 
+  
+p</code></pre></div>
+<p><img src="differences_files/figure-html/unnamed-chunk-1-1.png" width="960" style="display: block; margin: auto;" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save the plot for talk</span>
+<span class="kw">ggsave</span>(p, <span class="dt">file=</span><span class="st">&quot;IMG/etherum_evolution_zoom.png&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">4</span>)</code></pre></div>
+<h1 id="differences" class="tabset">Differences</h1>
+<hr />
+<p>As you can see on the graphic above, there are <code>discrepencies</code> between prices of exchanges. Basically, the price is not exactly the same on Bitstamp and on Cex at a given timestamp. The correlation is very strong tough.</p>
+<p><br></p>
+<p>This is what interest us to perform arbitrage. But can we <code>quantify</code> these differences? The following graphic displays the price difference (in %) between Kraken and Bitstamp at each time stamp:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">get_last_difference &lt;-<span class="st"> </span><span class="cf">function</span>(plat1, plat2, currency){
+  <span class="co"># First I calculate the differnce of the &#39;last&#39; price between both exchanges:</span>
+  diff &lt;-<span class="st"> </span>Ticker <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(symbol<span class="op">==</span>currency) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(platform <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(plat1, plat2)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(time, platform, last, symbol) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">spread</span>(platform, last) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">diff=</span>.[[<span class="dv">4</span>]] <span class="op">-</span><span class="st"> </span>.[[<span class="dv">3</span>]], <span class="dt">diff_perc=</span>(.[[<span class="dv">4</span>]] <span class="op">-</span><span class="st"> </span>.[[<span class="dv">3</span>]]) <span class="op">/</span><span class="st"> </span>.[[<span class="dv">4</span>]] <span class="op">*</span><span class="dv">100</span> ) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(diff_perc))
+  <span class="kw">return</span>(diff)
+}
+  
+  <span class="co"># Then I plot the result</span>
+plot_last_difference &lt;-<span class="st"> </span><span class="cf">function</span>(diff, plat1, plat2){
+  p &lt;-<span class="st">  </span>diff <span class="op">%&gt;%</span>
+<span class="st">        </span><span class="kw">sample_frac</span>(<span class="fl">0.1</span>) <span class="op">%&gt;%</span><span class="st">    </span>
+<span class="st">        </span><span class="kw">ggplot</span>( <span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>diff_perc, <span class="dt">group=</span>symbol, <span class="dt">fill=</span>symbol)) <span class="op">+</span>
+<span class="st">          </span><span class="kw">geom_area</span>(<span class="dt">fill=</span><span class="st">&quot;#69b3a2&quot;</span>) <span class="op">+</span>
+<span class="st">          </span><span class="kw">theme_ipsum</span>() <span class="op">+</span>
+<span class="st">          </span><span class="kw">theme</span>(
+            <span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>,
+            <span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>)
+          ) <span class="op">+</span>
+<span class="st">          </span><span class="kw">ylab</span>(<span class="st">&quot;Price difference (%)&quot;</span>) <span class="op">+</span>
+<span class="st">          </span><span class="kw">xlab</span>(<span class="st">&quot;Day (February)&quot;</span>) <span class="op">+</span>
+<span class="st">          </span><span class="kw">ggtitle</span>(<span class="kw">paste0</span>(<span class="st">&quot;Etherum price difference between &quot;</span>, plat1, <span class="st">&quot; and &quot;</span>, plat2)) <span class="op">+</span>
+<span class="st">          </span><span class="kw">scale_x_datetime</span>(<span class="dt">date_breaks =</span> <span class="st">&quot;1 day&quot;</span>, <span class="dt">date_labels =</span> <span class="st">&quot;%d&quot;</span>, <span class="dt">minor_breaks=</span><span class="ot">NULL</span>) <span class="op">+</span>
+<span class="st">          </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)
+  
+  p
+}
+
+<span class="co"># Run the function for Kraken and bitstamp</span>
+diff &lt;-<span class="st"> </span><span class="kw">get_last_difference</span>(<span class="st">&quot;Kraken&quot;</span>, <span class="st">&quot;Bitstamp&quot;</span>, <span class="st">&quot;ETHEUR&quot;</span>)
+p &lt;-<span class="st"> </span><span class="kw">plot_last_difference</span>(diff, <span class="st">&quot;Kraken&quot;</span>, <span class="st">&quot;Bitstamp&quot;</span>)
+p</code></pre></div>
+<p><img src="differences_files/figure-html/show_differences-1.png" width="960" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggsave</span>(p, <span class="dt">file=</span><span class="st">&quot;IMG/price_diff_eth_kraken_bitstamp.png&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">4</span>)
+
+
+<span class="co"># Compute a few summary statistics</span>
+lengthPeriod &lt;-<span class="st"> </span><span class="kw">max</span>(diff<span class="op">$</span>time) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(diff<span class="op">$</span>time) 
+numTimeStamp &lt;-<span class="st"> </span><span class="kw">nrow</span>(diff)
+numOver1 &lt;-<span class="st"> </span>diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(diff_perc <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span> ) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()
+numUnder1 &lt;-<span class="st"> </span>diff <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(diff_perc <span class="op">&lt;</span><span class="st"> </span><span class="op">-</span><span class="dv">1</span> ) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()
+numTot &lt;-<span class="st"> </span>numOver1 <span class="op">+</span><span class="st"> </span>numUnder1
+freqOver1 &lt;-<span class="st"> </span>numTot <span class="op">/</span><span class="st"> </span><span class="kw">as.numeric</span>(lengthPeriod) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">0</span>)</code></pre></div>
+<p>The chart aboves represents a period of <code>14 days</code> where 42087 prices have been recovered. In total, 2293 situations with Bitstamp being at least 1% more expensive than Kraken have been observed, and 644 reciprocally. This is a total of 2937 times with differences over 1%, which is an average of 210 per day.</p>
+<p><em>Important note</em>: this chart represents the price differences of the <code>last</code> transaction done. However, note that we buy crypto at the <code>ask</code> price, and sell it at the <code>bid</code> price. Differences are thus smaller than that in reality.</p>
+<h1 id="where-is-the-best-deal">Where is the best deal?</h1>
+<hr />
+<p>Now that we know there are a few differences between exchanges, we need to know <code>what pair of exchange</code> have the most frequent discrepencies. Moreover, we need to figure out if some <code>currencies have more discrepencies</code> than others.</p>
+<p><br> The next graphic quantifies the number of differences observed per day (Y axis) for a specific threshold (X axis). Four lines are provided, one per currency that exists in both Kraken and Bitstamp. For instance, it appears that differences over 1% happen about <code>2OO times a day</code> for bitcoin, and about 300 times a day for litecoin (XRP) and Bitcoincash. It is also interesting to note that differences over ~1.7% basically never happen.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A function that calculates the difference between the ASK and the BID of 2 platforms for every currency at each time stamp</span>
+find_askbid_difference &lt;-<span class="st"> </span><span class="cf">function</span>(plat1, plat2){
+  
+  diff &lt;-<span class="st"> </span>Ticker <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(platform <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(plat1, plat2)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">select</span>(time, platform, symbol, ask, bid) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ask=</span><span class="kw">as.numeric</span>(ask), <span class="dt">bid=</span><span class="kw">as.numeric</span>(bid)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">gather</span>(temp, value, <span class="op">-</span>time, <span class="op">-</span>platform, <span class="op">-</span>symbol) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">platform=</span><span class="kw">gsub</span>(plat1,<span class="st">&quot;plat1&quot;</span>, platform)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">platform=</span><span class="kw">gsub</span>(plat2,<span class="st">&quot;plat2&quot;</span>, platform)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">unite</span>(temp1, platform, temp, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">spread</span>( <span class="dt">key=</span>temp1, <span class="dt">value=</span>value) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>( 
+      <span class="dt">diff1=</span>(plat1_bid<span class="op">-</span>plat2_ask)<span class="op">/</span>plat1_bid<span class="op">*</span><span class="dv">100</span>, 
+      <span class="dt">diff2=</span>(plat2_bid<span class="op">-</span>plat1_ask)<span class="op">/</span>plat2_bid<span class="op">*</span><span class="dv">100</span>
+    ) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">rowwise</span>() <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>( <span class="dt">diff_perc=</span><span class="kw">max</span>(diff1, diff2) ) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(diff_perc))
+  <span class="kw">return</span>(diff)
+}
+
+<span class="co"># A function that plot these differences</span>
+plot_askbid_difference &lt;-<span class="st"> </span><span class="cf">function</span>(diff){
+  p &lt;-<span class="st">  </span>diff <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">sample_frac</span>(<span class="fl">0.1</span>) <span class="op">%&gt;%</span>
+<span class="st">          </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>time, <span class="dt">y=</span>diff_perc, <span class="dt">group=</span>symbol, <span class="dt">fill=</span>symbol)) <span class="op">+</span>
+<span class="st">            </span><span class="kw">geom_area</span>() <span class="op">+</span>
+<span class="st">            </span><span class="kw">facet_wrap</span>(<span class="op">~</span>symbol, <span class="dt">nrow=</span><span class="dv">5</span>) <span class="op">+</span>
+<span class="st">            </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span>
+<span class="st">            </span><span class="kw">ggtitle</span>(<span class="st">&quot;&quot;</span>)
+    
+  <span class="kw">ggplotly</span>(p)
+} 
+
+<span class="co"># A function that counts the number of significant differences for several threshold</span>
+find_signif_diff &lt;-<span class="st"> </span><span class="cf">function</span>(diff){
+  nbSignifDiff=<span class="kw">data.frame</span>()
+  <span class="cf">for</span>( i <span class="cf">in</span> <span class="kw">seq</span>(<span class="fl">0.7</span>,<span class="dv">4</span>,<span class="fl">0.2</span>)){
+    df &lt;-<span class="st">  </span>diff <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">group_by</span>(symbol) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">filter</span>(diff_perc <span class="op">&gt;</span><span class="st"> </span>i) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">summarise</span>( <span class="dt">nb_over_thres =</span> <span class="kw">n</span>() ) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">mutate</span>( <span class="dt">thres =</span> i) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">arrange</span>( nb_over_thres )
+    nbSignifDiff &lt;-<span class="st"> </span><span class="kw">rbind</span>( nbSignifDiff, df)
+  }
+  <span class="kw">return</span>(nbSignifDiff)
+}
+
+<span class="co"># A function that plot this number of diff -&gt; plot it PER DAY</span>
+plot_signif_diff &lt;-<span class="st"> </span><span class="cf">function</span>(nbSignifDiff){
+  p &lt;-<span class="st"> </span>nbSignifDiff <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">filter</span>(symbol<span class="op">==</span><span class="st">&quot;BCHEUR&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">nb_over_thres =</span> nb_over_thres <span class="op">/</span><span class="st"> </span><span class="kw">time_length</span>(lengthPeriod, <span class="dt">unit=</span><span class="st">&quot;day&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">mytext=</span><span class="kw">paste0</span>(<span class="st">&quot;Currency: &quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;EUR&quot;</span>, <span class="st">&quot;&quot;</span>,symbol), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="kw">round</span>(nb_over_thres,<span class="dv">0</span>),<span class="st">&quot; differences per day observed over &quot;</span>,thres, <span class="st">&quot; %&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">symbol =</span> <span class="kw">gsub</span>(<span class="st">&quot;EUR&quot;</span>, <span class="st">&quot;&quot;</span>, symbol)) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">ggplot</span>( <span class="kw">aes</span>(<span class="dt">x=</span>thres, <span class="dt">y=</span>nb_over_thres, <span class="dt">group=</span>symbol, <span class="dt">color=</span>symbol, <span class="dt">text=</span>mytext)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Number of differences / day&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Difference in %&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">ggtitle</span>(<span class="st">&quot;Number of price differences between Kraken and Bitstamp&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">theme_ipsum</span>() <span class="op">+</span>
+<span class="st">      </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">12</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>, <span class="dt">name=</span><span class="st">&quot;Currency&quot;</span>)
+    <span class="co">#ggplotly(p, tooltip=&quot;text&quot;)</span>
+}
+
+<span class="co"># Apply that to a first example:</span>
+diff &lt;-<span class="st"> </span><span class="kw">find_askbid_difference</span>(<span class="st">&quot;Kraken&quot;</span>, <span class="st">&quot;Bitstamp&quot;</span>)
+nbSignifDiff &lt;-<span class="st"> </span><span class="kw">find_signif_diff</span>(diff)
+p &lt;-<span class="st"> </span><span class="kw">plot_signif_diff</span>(nbSignifDiff)</code></pre></div>
+<center>
+<img src="differences_files/figure-html/relationship_thres_numDiff-1.png" width="768" style="display: block; margin: auto;" />
+</center>
+<p>It is possible to build exactly the same graphic for each pair of exchange, giving the following graphic. Note that some currencies are not available on every exchange, that’s why most of the pair below give results only for bitcoin that is the most widely used currency.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># find all the pairs of platform</span>
+list_platforms &lt;-<span class="st"> </span>Ticker<span class="op">$</span>platform <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>()
+list_pairs &lt;-<span class="st"> </span><span class="kw">combn</span>(list_platforms, <span class="dv">2</span>)
+
+<span class="co"># find the number of significant differences for each pair</span>
+bilan=<span class="kw">data.frame</span>()
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">ncol</span>(list_pairs))){
+  diff &lt;-<span class="st"> </span><span class="kw">find_askbid_difference</span>(list_pairs[<span class="dv">1</span>,i], list_pairs[<span class="dv">2</span>,i])
+  nbSignifDiff &lt;-<span class="st"> </span><span class="kw">find_signif_diff</span>(diff)
+  nbSignifDiff<span class="op">$</span>pair &lt;-<span class="st"> </span><span class="kw">paste</span>( list_pairs[<span class="dv">1</span>,i], list_pairs[<span class="dv">2</span>,i], <span class="dt">sep=</span><span class="st">&quot;-&quot;</span>)
+  bilan &lt;-<span class="st"> </span><span class="kw">rbind</span>(bilan, nbSignifDiff)
+}
+
+<span class="co"># plot it</span>
+p &lt;-<span class="st"> </span>bilan <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">nb_over_thres =</span> nb_over_thres <span class="op">/</span><span class="st"> </span><span class="kw">time_length</span>(lengthPeriod, <span class="dt">unit=</span><span class="st">&quot;day&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">mytext=</span><span class="kw">paste0</span>(<span class="st">&quot;Currency: &quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;EUR&quot;</span>, <span class="st">&quot;&quot;</span>,symbol), <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, nb_over_thres,<span class="st">&quot; differences observed over &quot;</span>,thres, <span class="st">&quot; %&quot;</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>( <span class="kw">aes</span>(<span class="dt">x=</span>thres, <span class="dt">y=</span>nb_over_thres, <span class="dt">group=</span>symbol, <span class="dt">color=</span>symbol)) <span class="op">+</span>
+<span class="st">      </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">      </span><span class="kw">ylab</span>(<span class="st">&quot;Number of significant differences per day&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">xlab</span>(<span class="st">&quot;Difference threshold (%)&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">theme_ipsum</span>() <span class="op">+</span>
+<span class="st">      </span><span class="kw">scale_color_viridis</span>(<span class="dt">discrete=</span><span class="ot">TRUE</span>, <span class="dt">name=</span><span class="st">&quot;&quot;</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">facet_wrap</span>(<span class="op">~</span>pair, <span class="dt">ncol=</span><span class="dv">5</span>) <span class="op">+</span>
+<span class="st">      </span><span class="kw">theme</span>(
+        <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="fl">0.3</span>, <span class="st">&quot;lines&quot;</span>),
+        <span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>)
+      )   
+<span class="kw">ggplotly</span>(p, <span class="dt">tooltip=</span><span class="st">&quot;text&quot;</span>)</code></pre></div>
+<div id="1233b3d79595b" style="width:960px;height:576px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="1233b3d79595b">{"x":{"data":[{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[641.36592723095,438.234530628307,298.474407754517,203.202921742292,139.044871477302,96.7019888052018,68.3065083646211,51.3550502678512,38.1228994328199,27.108027926902,16.5223072588769,8.15386591996524,4.7921843564708,3.14710614454799,1.64507821192281,0.572201117190543,0.286100558595272],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7],"y":[662.894994265244,412.700055773679,277.446016697765,183.748083757813,119.733083772121,78.8207038929973,51.6411508264465,29.5398826749618,12.946050276436,5.14981005471489,1.35897765332754,0.500675977541725,0.357625698244089,0.0715251396488179,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3],"y":[327.871240150181,206.421553026488,129.746603322956,76.5318994242351,45.9191396545411,28.5385307198783,21.7436424532406,16.1646815606328,13.8758770918707,10.3711452490786,3.93388268068498,1.35897765332754,0.643726256839361,0.143050279297636],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3],"y":[51.2119999885536,37.9798491535223,25.6059999942768,14.4480782090612,7.5816648027747,4.21998323928026,2.43185474805981,1.64507821192281,1.14440223438109,0.429150837892907,0.286100558595272,0.286100558595272,0.214575418946454,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x4","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3],"y":[1.71660335157163,0.786776536136997,0.357625698244089,0.143050279297636],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x5","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5],"y":[30.1120837921523,23.7463463634075,19.240262565532,16.2362067002817,13.9474022315195,11.1579217852156,5.79353631155425,2.14575418946454,0.572201117190543,0.143050279297636],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9],"y":[132.464558629611,109.290413383394,94.9853854536302,80.2512066859737,63.2997485892038,39.267301667201,21.600592173943,11.3009720645132,5.22133519436371,2.93253072560153,0.858301675785815,0.357625698244089],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[1013.94037966164,704.451100401207,541.087681443307,441.453161912504,359.699927293905,271.65248038621,202.487670345803,156.568530691262,133.823536282938,118.803256956687,106.286357518143,88.8342234438318,62.5844971927157,42.6289832306955,28.8961564181224,19.0972122862344,12.3738491592455],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x3","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1],"y":[214.575418946454,144.266206671666,96.1297876880112,63.6573742874479,39.4103519464987,21.7436424532406,11.2294469248644,5.5789608926078,2.14575418946454,1.00135195508345,0.357625698244089,0.214575418946454,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x4","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[531.574837870015,421.783748509079,331.232921713676,257.1328770375,186.537564204117,133.465910584694,93.7694580796003,67.5197318284841,48.0648938440056,33.6883407745932,17.8097597725557,8.7975921768046,5.14981005471489,2.57490502735744,1.57355307227399,0.715251396488179,0.643726256839361],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(68,1,84,1)","dash":"solid"},"hoveron":"points","name":"BTCEUR","legendgroup":"BTCEUR","showlegend":false,"xaxis":"x5","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[343.821346291868,215.791346320484,134.181161981182,85.3294916010397,56.2187597639709,32.9730893781051,21.2429664756989,14.0189273711683,8.72606703715578,4.7921843564708,1.85965363086927,1.00135195508345,0.214575418946454,0.143050279297636,0.143050279297636,0.143050279297636,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(59,82,139,1)","dash":"solid"},"hoveron":"points","name":"ETHEUR","legendgroup":"ETHEUR","showlegend":true,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[2.86100558595272,1.71660335157163,1.2159273740299,0.858301675785815,0.500675977541725,0.286100558595272,0.214575418946454,0.143050279297636,0.143050279297636,0.143050279297636,0.143050279297636,0.0715251396488179,0.0715251396488179,0.0715251396488179,0.0715251396488179,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(59,82,139,1)","dash":"solid"},"hoveron":"points","name":"ETHEUR","legendgroup":"ETHEUR","showlegend":false,"xaxis":"x5","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3],"y":[33.759865914242,18.1673854707997,10.8718212266203,6.07963687014952,4.21998323928026,2.0027039101669,1.43050279297636,0.786776536136997,0.429150837892907,0.357625698244089,0.214575418946454,0.0715251396488179,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(59,82,139,1)","dash":"solid"},"hoveron":"points","name":"ETHEUR","legendgroup":"ETHEUR","showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5],"y":[135.468614494861,109.791089360935,92.9111564038144,80.3227318256225,64.5872011028826,45.2754133977017,29.0392066974201,14.0189273711683,6.86641340628652,3.00405586525035,1.00135195508345,0.572201117190543,0.143050279297636,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(59,82,139,1)","dash":"solid"},"hoveron":"points","name":"ETHEUR","legendgroup":"ETHEUR","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[198.053111687577,130.390329579795,90.4793016557546,66.9475307112936,46.2767653527852,29.6114078146106,15.5209553037935,7.36708938382824,3.50473184279208,1.64507821192281,0.715251396488179,0.357625698244089,0.286100558595272,0.214575418946454,0.143050279297636,0.143050279297636,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(59,82,139,1)","dash":"solid"},"hoveron":"points","name":"ETHEUR","legendgroup":"ETHEUR","showlegend":false,"xaxis":"x4","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[477.430307155859,332.734949646301,249.622737374374,189.112469231475,149.773642424625,116.729027906871,92.3389552866239,71.3820893695203,55.002832389941,39.5534022257963,25.4629497149792,15.8070558623888,11.014871505918,7.43861452347706,5.50743575295898,3.29015642384562,2.43185474805981],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(59,82,139,1)","dash":"solid"},"hoveron":"points","name":"ETHEUR","legendgroup":"ETHEUR","showlegend":false,"xaxis":"x5","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7],"y":[1.85965363086927,1.14440223438109,0.643726256839361,0.500675977541725,0.214575418946454,0.143050279297636],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(33,144,140,1)","dash":"solid"},"hoveron":"points","name":"LTCEUR","legendgroup":"LTCEUR","showlegend":true,"xaxis":"x5","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[127.028648016301,108.28906142831,89.1918491420759,71.1675139505738,52.5709776418812,34.3320670314326,21.7436424532406,12.8745251367872,6.58031284769125,3.71930726173853,1.93117877051808,1.00135195508345,0.500675977541725,0.214575418946454,0.143050279297636,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(33,144,140,1)","dash":"solid"},"hoveron":"points","name":"LTCEUR","legendgroup":"LTCEUR","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5],"y":[176.237944094687,119.446983213526,83.3983128305217,56.3618100432685,37.693748594927,21.9582178721871,11.6585977627573,5.5789608926078,2.86100558595272,1.43050279297636,0.643726256839361,0.214575418946454,0.143050279297636,0.143050279297636,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(33,144,140,1)","dash":"solid"},"hoveron":"points","name":"LTCEUR","legendgroup":"LTCEUR","showlegend":false,"xaxis":"x4","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[249.551212234726,188.325692695338,142.978754157987,113.15277092443,90.6938770747011,72.9556424417943,48.3509944026009,35.8340949640578,29.6829329542594,23.0310949669194,16.9514580967698,13.5182513936266,10.6572458076739,5.65048603225661,4.7921843564708,3.14710614454799,1.50202793262518],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(93,200,99,1)","dash":"solid"},"hoveron":"points","name":"BCHEUR","legendgroup":"BCHEUR","showlegend":true,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9],"y":[0.858301675785815,0.143050279297636],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(93,200,99,1)","dash":"solid"},"hoveron":"points","name":"BCHEUR","legendgroup":"BCHEUR","showlegend":false,"xaxis":"x5","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7],"y":[67.948882666377,49.9245474748749,31.3280111661822,21.0283910567525,15.0202793262518,10.5141955283762,8.01081564066761,6.50878770804243,5.86506145120307,4.57760893752435,3.71930726173853,2.71795530665508,1.71660335157163,0.715251396488179,0.572201117190543,0.143050279297636],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(93,200,99,1)","dash":"solid"},"hoveron":"points","name":"BCHEUR","legendgroup":"BCHEUR","showlegend":false,"xaxis":"x","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[130.461854719444,112.509044667591,98.990793273964,89.54947484032,74.6007206537171,58.507564232733,40.1256033429868,23.3887206651635,13.0891005557337,5.14981005471489,3.00405586525035,1.64507821192281,0.715251396488179,0.214575418946454,0.0715251396488179,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(93,200,99,1)","dash":"solid"},"hoveron":"points","name":"BCHEUR","legendgroup":"BCHEUR","showlegend":false,"xaxis":"x2","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[152.634648010577,108.718212266203,77.3186759603721,52.3564022229347,34.546642450379,21.0999161964013,13.5897765332754,7.65318994242351,3.57625698244089,2.0027039101669,1.07287709473227,0.429150837892907,0.214575418946454,0.143050279297636,0.143050279297636,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(93,200,99,1)","dash":"solid"},"hoveron":"points","name":"BCHEUR","legendgroup":"BCHEUR","showlegend":false,"xaxis":"x4","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[390.169636784302,311.992659148144,259.135580947667,218.866927325383,183.247407780271,156.997681529155,134.967938517319,115.370050253543,91.4806536108381,78.176977636158,65.1594022200731,56.576385462215,43.4157597668325,34.0459664728373,23.8893966427052,16.093156420984,9.01216759575106],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(93,200,99,1)","dash":"solid"},"hoveron":"points","name":"BCHEUR","legendgroup":"BCHEUR","showlegend":false,"xaxis":"x5","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[516.626083683412,381.658145166092,271.294854687966,184.892485992194,125.383569804378,74.3146200951218,48.7801452404938,29.1822569767177,15.5924804434423,7.86776536136997,5.79353631155425,3.93388268068498,1.78812849122045,0.929826815434633,0.500675977541725,0.429150837892907,0.357625698244089],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(253,231,37,1)","dash":"solid"},"hoveron":"points","name":"XRPEUR","legendgroup":"XRPEUR","showlegend":true,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5],"y":[201.200217832125,127.386273714545,85.615592159635,55.3604580881851,36.1917206623019,22.6734692686753,12.3738491592455,6.0081117305007,2.86100558595272,0.786776536136997,0.214575418946454,0.143050279297636,0.143050279297636,0.0715251396488179,0.0715251396488179],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(253,231,37,1)","dash":"solid"},"hoveron":"points","name":"XRPEUR","legendgroup":"XRPEUR","showlegend":false,"xaxis":"x4","yaxis":"y2","hoverinfo":"text","frame":null},{"x":[0.7,0.9,1.1,1.3,1.5,1.7,1.9,2.1,2.3,2.5,2.7,2.9,3.1,3.3,3.5,3.7,3.9],"y":[586.363094841009,454.184636769994,362.990083717751,290.320541834552,242.61327368879,196.980234592844,150.274318402166,114.225648019162,88.1189720473436,62.7990726116621,46.5628659113804,34.189016752135,24.1754972013004,15.0918044659006,10.228094969781,6.65183798734006,4.21998323928026],"text":"","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(253,231,37,1)","dash":"solid"},"hoveron":"points","name":"XRPEUR","legendgroup":"XRPEUR","showlegend":false,"xaxis":"x5","yaxis":"y2","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":93.0444167704442,"r":39.8505603985056,"b":97.4678289746783,"l":86.1768368617684},"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":15.2760481527605},"xaxis":{"domain":[0,0.194],"type":"linear","autorange":false,"range":[0.54,4.06],"tickmode":"array","ticktext":["1","2","3","4"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1","2","3","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"hoverformat":".2f"},"annotations":[{"text":"Difference threshold (%)","x":0.5,"y":-0.0435288962686223,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis"},{"text":"Number of significant differences per day","x":-0.0420298879202989,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis"},{"text":"Bitfinex-Cex","x":0.097,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Bitstamp-Bitfinex","x":0.3,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Bitstamp-Cex","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"coinbase-Bitfinex","x":0.7,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"coinbase-Bitstamp","x":0.903,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"coinbase-Cex","x":0.097,"y":0.471550666482173,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"coinbase-Kraken","x":0.3,"y":0.471550666482173,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Kraken-Bitfinex","x":0.5,"y":0.471550666482173,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Kraken-Bitstamp","x":0.7,"y":0.471550666482173,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Kraken-Cex","x":0.903,"y":0.471550666482173,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"Arial Narrow","size":10.6268161062682},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0.528449333517827,1],"type":"linear","autorange":false,"range":[-50.6219175864509,1064.63382238774],"tickmode":"array","ticktext":["0","250","500","750","1000"],"tickvals":[7.105427357601e-15,250,500,750,1000],"categoryorder":"array","categoryarray":["0","250","500","750","1000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"x","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.194,"y0":0.528449333517827,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.194,"y0":1,"y1":1.07874015748032},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.206,"x1":0.394,"y0":0.528449333517827,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.206,"x1":0.394,"y0":1,"y1":1.07874015748032},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.406,"x1":0.594,"y0":0.528449333517827,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.406,"x1":0.594,"y0":1,"y1":1.07874015748032},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.606,"x1":0.794,"y0":0.528449333517827,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.606,"x1":0.794,"y0":1,"y1":1.07874015748032},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.806,"x1":1,"y0":0.528449333517827,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.806,"x1":1,"y0":1,"y1":1.07874015748032},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.194,"y0":0,"y1":0.471550666482173},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.194,"y0":0.471550666482173,"y1":0.550290823962488},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.206,"x1":0.394,"y0":0,"y1":0.471550666482173},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.206,"x1":0.394,"y0":0.471550666482173,"y1":0.550290823962488},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.406,"x1":0.594,"y0":0,"y1":0.471550666482173},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.406,"x1":0.594,"y0":0.471550666482173,"y1":0.550290823962488},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.606,"x1":0.794,"y0":0,"y1":0.471550666482173},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.606,"x1":0.794,"y0":0.471550666482173,"y1":0.550290823962488},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.806,"x1":1,"y0":0,"y1":0.471550666482173},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.806,"x1":1,"y0":0.471550666482173,"y1":0.550290823962488}],"xaxis2":{"type":"linear","autorange":false,"range":[0.54,4.06],"tickmode":"array","ticktext":["1","2","3","4"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1","2","3","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.206,0.394],"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[0.54,4.06],"tickmode":"array","ticktext":["1","2","3","4"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1","2","3","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.406,0.594],"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"hoverformat":".2f"},"xaxis4":{"type":"linear","autorange":false,"range":[0.54,4.06],"tickmode":"array","ticktext":["1","2","3","4"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1","2","3","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.606,0.794],"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"hoverformat":".2f"},"xaxis5":{"type":"linear","autorange":false,"range":[0.54,4.06],"tickmode":"array","ticktext":["1","2","3","4"],"tickvals":[1,2,3,4],"categoryorder":"array","categoryarray":["1","2","3","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.806,1],"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"y2","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"hoverformat":".2f"},"yaxis2":{"type":"linear","autorange":false,"range":[-50.6219175864509,1064.63382238774],"tickmode":"array","ticktext":["0","250","500","750","1000"],"tickvals":[7.105427357601e-15,250,500,750,1000],"categoryorder":"array","categoryarray":["0","250","500","750","1000"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.81901203819012,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"Arial Narrow","size":15.2760481527605},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0,0.471550666482173],"gridcolor":"rgba(204,204,204,1)","gridwidth":0.265670402656704,"zeroline":false,"anchor":"x","title":"","titlefont":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":11.9551681195517},"hoverformat":".2f"},"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"Arial Narrow","size":12.2208385222084},"y":0.924540682414698},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"1233b1e547f6b":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"1233b1e547f6b","visdat":{"1233b1e547f6b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1}},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":{"render":[{"code":"function(el, x) { var ctConfig = crosstalk.var('plotlyCrosstalkOpts').set({\"on\":\"plotly_click\",\"persistent\":false,\"dynamic\":false,\"selectize\":false,\"opacityDim\":0.2,\"selected\":{\"opacity\":1}}); }","data":null}]}}</script>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ggsave(p, file=&quot;IMG/difference_counts_step3.png&quot;, width=7, height=4)</span></code></pre></div>
+<p>A few observation are of interest:</p>
+<ul>
+<li>The number of significant differences between platform is quite uniform from a currency to another. However for strong differences (~2%) Bitcoin cash and litecoin seem to be of interest.</li>
+<li><p>Discrepancies are very different from one pair of exchange to another:</p>
+<ul>
+<li>Kraken, Coinbase and Bitstamp look to offer very close prices.</li>
+<li>Cex and Bitstamp appear to be very different compared to others.</li>
+</ul></li>
+</ul>
+<h1 id="conclusion">Conclusion</h1>
+<hr />
+<ul>
+<li>Based on these data, it appears that discrepancies exist between exchange prices.</li>
+<li>The price differences are slight, almost never reaching 2%.</li>
+<li>Arbitrage opportunities thus exist, but with low margin available.</li>
+<li>Best arbitrage opportunity takes place between Cex and Bitstamp.</li>
+<li>Bitcoinc cash and Litecoin seem to be good targets to maximize the number of transaction with high margin.</li>
+</ul>
+<h1 id="next-step">Next step</h1>
+<hr />
+<p>The next step is to understand what arbitrage is in depth, and study its potential limitations.</p>
+<br>
+<center>
+<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/public_API.html">&lt; How data was harvested</a> <a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/definition.html">What is arbitrage &gt;</a>
+</center>
+<p><br><br></p>
+</div>
+
+
+
+
+
+&nbsp;
+<hr />
+<p style="text-align: center;">A work by <a href="https://github.com/holtzy/">Yan Holtz</a> for <a href="https://data-to-viz.com">data-to-viz.com</a></p>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">
+	<a href="https://twitter.com/r_graph_gallery?lang=en" class="fa fa-twitter"></a>
+	<a href="https://www.linkedin.com/in/yan-holtz-2477534a/" class="fa fa-linkedin"></a>
+	<a href="https://github.com/holtzy/" class="fa fa-github"></a>
+</p>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-79254642-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-79254642-3');
+</script>
+
+
+&nbsp;
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
