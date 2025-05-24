@@ -35,7 +35,7 @@ output:
 
 #Definition
 ***
-Crypto currencies are bought and sold on different `exchanges`. Basically it is like a bank, but for crypto. The price is not allways exactly the same on 2 exchanges, as shown [here](https://holtzy.github.io/Crypto-Arbitrage/CONTENT/differences.html). It is thus possible to buy a crypto where the price is low, and sell it instantly where the price is high to realize a gain without taking any risk.
+Crypto currencies are bought and sold on different `exchanges`. Basically it is like a bank, but for crypto. The price is not allways exactly the same on 2 exchanges, as shown [here](https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html). It is thus possible to buy a crypto where the price is low, and sell it instantly where the price is high to realize a gain without taking any risk.
 
 Consider the following situation as an example:
 
@@ -251,8 +251,8 @@ The next step simulates an arbitrage algorithm on a 2 weeks period to assess the
 
 <br>
 <center>
-<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/differences.html">< Quantifying differences</a>
-<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/optimization.html">Simulating arbitrage ></a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">< Quantifying differences</a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/optimization.html">Simulating arbitrage ></a>
 </center>
 <br><br>
 

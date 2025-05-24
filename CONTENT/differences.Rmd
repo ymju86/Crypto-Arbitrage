@@ -29,7 +29,7 @@ output:
 
 #Data
 ***
-Prices of `5 cryto currencies` have been harvested for `2 weeks` on `5 different exchanges` every `few seconds` as described [here](https://holtzy.github.io/Crypto-Arbitrage/CONTENT/public_API.html). About `800,000 data points` are available, allowing to compare prices between exchanges at a high resolution.
+Prices of `5 cryto currencies` have been harvested for `2 weeks` on `5 different exchanges` every `few seconds` as described [here](https://ymju86.github.io/Crypto-Arbitrage/CONTENT/public_API.html). About `800,000 data points` are available, allowing to compare prices between exchanges at a high resolution.
 
 <br>
 
@@ -44,7 +44,7 @@ library(viridis)
 library(lubridate)
 
 # Load result
-load(url("https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata"))
+load(url("https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata"))
 Ticker$last <- as.numeric(Ticker$last)
 #Ticker= head(Ticker, 100000)
 
@@ -330,8 +330,8 @@ The next step is to understand what arbitrage is in depth, and study its potenti
 
 <br>
 <center>
-<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/public_API.html">< How data was harvested</a>
-<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/definition.html">What is arbitrage ></a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/public_API.html">< How data was harvested</a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/definition.html">What is arbitrage ></a>
 </center>
 <br><br>
 

@@ -44,7 +44,7 @@ library(lubridate)
 library(ggrepel)
 
 # Load result
-load(url("https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/DATA/arbitrage_bitstamp_cex_BCHEUR_18Jun.Rdata"))
+load(url("https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/arbitrage_bitstamp_cex_BCHEUR_18Jun.Rdata"))
 bilan[,-which(colnames(bilan)%in%c("transaction", "rebalance"))]= apply( bilan[,-which(colnames(bilan)%in%c("transaction", "rebalance"))], 2, as.numeric ) %>% as.tibble()
 bilan$time=as.POSIXct( bilan$time, origin="1970-01-01")
 

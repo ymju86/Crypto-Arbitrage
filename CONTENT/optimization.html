@@ -17,7 +17,7 @@
 
 <style>
 .myheader {
-  background-image: url("https://github.com/holtzy/Crypto-Arbitrage/raw/master/img/area_bitcoin_fadded_long.png");
+  background-image: url("https://github.com/ymju86/Crypto-Arbitrage/raw/master/img/area_bitcoin_fadded_long.png");
     min-height: 400px; 
     background-size: 10% 100%; !important
 
@@ -42,7 +42,7 @@
 
 <div class="myheader" style="text-align: center;">
   <br>
-  <div style="text-align: left; margin-left: 5%"><a href="https://holtzy.github.io/Crypto-Arbitrage/">HOME</a></div>
+  <div style="text-align: left; margin-left: 5%"><a href="https://ymju86.github.io/Crypto-Arbitrage/">HOME</a></div>
   <br><br>
   <br><br>
   <p class="mytitle">Simulating and Optimizing an arbitrage algorithm</p>
@@ -225,7 +225,7 @@ $(document).ready(function () {
 <div class="mycontent">
 <h1 id="data">Data</h1>
 <hr />
-<p>Previous parts of this analysis <a href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/public_API.html">harvested data</a> on crypto prices for 5 exchanges and 5 currencies. It showed that <a href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/differences.html">price differences exist</a>, offering arbitrage opportunities. It also described the <a href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/definition.html">behaviour of a bot</a> realizing arbitrage.</p>
+<p>Previous parts of this analysis <a href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/public_API.html">harvested data</a> on crypto prices for 5 exchanges and 5 currencies. It showed that <a href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">price differences exist</a>, offering arbitrage opportunities. It also described the <a href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/definition.html">behaviour of a bot</a> realizing arbitrage.</p>
 <p>Here we gonna apply this bot to the harvested dataset. The bot is gonna perform arbitrage on Bitcoin cash between Bitstamp and Cex. Here is description of Bitcoin cash price for these 2 platforms on the period:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Library</span>
 <span class="kw">library</span>(tidyverse)
@@ -237,7 +237,7 @@ $(document).ready(function () {
 <span class="kw">library</span>(lubridate)
 
 <span class="co"># Load result</span>
-<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata&quot;</span>))
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata&quot;</span>))
 Ticker<span class="op">$</span>last &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(Ticker<span class="op">$</span>last)
 Ticker=<span class="st"> </span><span class="kw">head</span>(Ticker, <span class="dv">100000</span>)
 
@@ -546,7 +546,7 @@ p &lt;-<span class="st"> </span>bilan_optimiz <span class="op">%&gt;%</span>
 <p>The next step is to understand what arbitrage is in depth, and study its potential limitations.</p>
 <br>
 <center>
-<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/definition.html">&lt; What is arbitrage</a> <a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/private_API.html">Calling the private API &gt;</a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/definition.html">&lt; What is arbitrage</a> <a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/private_API.html">Calling the private API &gt;</a>
 </center>
 <p><br><br></p>
 </div>
@@ -557,16 +557,15 @@ p &lt;-<span class="st"> </span>bilan_optimiz <span class="op">%&gt;%</span>
 
 &nbsp;
 <hr />
-<p style="text-align: center;">A work by <a href="https://github.com/holtzy/">Yan Holtz</a> for <a href="https://data-to-viz.com">data-to-viz.com</a></p>
+
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- Add font awesome icons -->
 <p style="text-align: center;">
-	<a href="https://twitter.com/r_graph_gallery?lang=en" class="fa fa-twitter"></a>
-	<a href="https://www.linkedin.com/in/yan-holtz-2477534a/" class="fa fa-linkedin"></a>
-	<a href="https://github.com/holtzy/" class="fa fa-github"></a>
+	<a href="https://www.linkedin.com/in/youngminju/" class="fa fa-linkedin"></a>
+	<a href="https://github.com/ymju86/" class="fa fa-github"></a>
 </p>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

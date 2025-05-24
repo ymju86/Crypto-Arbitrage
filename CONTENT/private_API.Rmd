@@ -81,7 +81,7 @@ get_my_balance_bitstamp()
 
 <br>
 
-I've written a [set of function](https://github.com/holtzy/Cryp-To/tree/master/FUNCTIONS) allowing to `get balance`, `buy` crypto and `sell` crypto for Bitstamp, Cex, and Kraken. You can find these function [here](https://github.com/holtzy/Cryp-To/tree/master/FUNCTIONS). Here is an example of utilization:
+I've written a [set of function](https://github.com/ymju86/Cryp-To/tree/master/FUNCTIONS) allowing to `get balance`, `buy` crypto and `sell` crypto for Bitstamp, Cex, and Kraken. You can find these function [here](https://github.com/ymju86/Cryp-To/tree/master/FUNCTIONS). Here is an example of utilization:
 
 ```{r, eval=FALSE}
 # Enter your bitstamp codes
@@ -90,7 +90,7 @@ secret_bitstamp="vfxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 customer_id_bitstamp="zxxxxxx"
 
 # Source the script with bitstamp functions:
-source("https://raw.githubusercontent.com/holtzy/Cryp-To/master/FUNCTIONS/Private_API_Functions_Bitstamp.R")
+source("https://raw.githubusercontent.com/ymju86/Cryp-To/master/FUNCTIONS/Private_API_Functions_Bitstamp.R")
 
 # Buy Etherum
 from_euro_to_crypto_bitstamp(0.05, "ETHEUR" )
@@ -105,7 +105,7 @@ Now that we have an arbitrage algorithm and a set of function allowing to buy an
 
 <br>
 <center>
-<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/arbitrage.html">Let's play for real</a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/arbitrage.html">Let's play for real</a>
 </center>
 <br><br>
 

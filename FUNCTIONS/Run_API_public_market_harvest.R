@@ -10,7 +10,7 @@
   # A 'ticker' file with the prices of the currency: last, bid, ask...
 
 # Run the script doing: 
-# wget https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/FUNCTIONS/Run_API_public_market_harvest.R
+# wget https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/FUNCTIONS/Run_API_public_market_harvest.R
 # Rscript Run_API_public_market_harvest.R BTCEUR 10 ticked_data_currency_date.Rdata
 # --------------------------------------
 
@@ -27,7 +27,7 @@ library(RJSONIO)        # To transform a JSON format in a data frame.
 library(dplyr)
 
 # Source the functions to request each API
-source("https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/FUNCTIONS/Public_Market_Functions.R")
+source("https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/FUNCTIONS/Public_Market_Functions.R")
 
 #Initialize an emtpy result table
 Ticker=as.data.frame(matrix(NA, 0, 12))

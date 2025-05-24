@@ -36,11 +36,11 @@ require(jsonlite)       # To go from JSON to data frame
 
 # And source the functions I've written
 # public API
-source("https://raw.githubusercontent.com/holtzy/Cryp-To/master/FUNCTIONS/Public_Market_Functions.R")
+source("https://raw.githubusercontent.com/ymju86/Cryp-To/master/FUNCTIONS/Public_Market_Functions.R")
 # private API for Bitstamp
-source("https://raw.githubusercontent.com/holtzy/Cryp-To/master/FUNCTIONS/Private_API_Functions_Bitstamp.R")
+source("https://raw.githubusercontent.com/ymju86/Cryp-To/master/FUNCTIONS/Private_API_Functions_Bitstamp.R")
 # private API for Cex
-source("https://raw.githubusercontent.com/holtzy/Cryp-To/master/FUNCTIONS/Private_API_Functions_Cex.R")
+source("https://raw.githubusercontent.com/ymju86/Cryp-To/master/FUNCTIONS/Private_API_Functions_Cex.R")
 
 
 

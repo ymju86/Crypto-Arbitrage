@@ -17,7 +17,7 @@
 
 <style>
 .myheader {
-  background-image: url("https://github.com/holtzy/Crypto-Arbitrage/raw/master/img/area_bitcoin_fadded_long.png");
+  background-image: url("https://github.com/ymju86/Crypto-Arbitrage/raw/master/img/area_bitcoin_fadded_long.png");
     min-height: 400px; 
     background-size: 10% 100%; !important
 
@@ -42,7 +42,7 @@
 
 <div class="myheader" style="text-align: center;">
   <br>
-  <div style="text-align: left; margin-left: 5%"><a href="https://holtzy.github.io/Crypto-Arbitrage/">HOME</a></div>
+  <div style="text-align: left; margin-left: 5%"><a href="https://ymju86.github.io/Crypto-Arbitrage/">HOME</a></div>
   <br><br>
   <br><br>
   <p class="mytitle">Harvesting crypto currency prices</p>
@@ -300,9 +300,9 @@ volume
 </table>
 <h1 id="code-resource">Code resource</h1>
 <hr />
-<p>I’ve written a <a href="https://github.com/holtzy/Cryp-To/blob/master/FUNCTIONS/Public_Market_Functions.R">set of functions</a> allowing to get the price of many different currencies for the 5 main exchanges. You can easily use these functions. For instance, type the code below in R:</p>
+<p>I’ve written a <a href="https://github.com/ymju86/Cryp-To/blob/master/FUNCTIONS/Public_Market_Functions.R">set of functions</a> allowing to get the price of many different currencies for the 5 main exchanges. You can easily use these functions. For instance, type the code below in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Source functions that are stored on github  </span>
-<span class="kw">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/FUNCTIONS/Public_Market_Functions.R&quot;</span>)
+<span class="kw">source</span>(<span class="st">&quot;https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/FUNCTIONS/Public_Market_Functions.R&quot;</span>)
 
 <span class="co"># Use it: price of the bitcoin on bitstamp  </span>
 <span class="kw">get_bitstamp</span>(<span class="kw">Sys.time</span>(), <span class="st">&quot;BTCEUR&quot;</span>)</code></pre></div>
@@ -314,18 +314,18 @@ volume
 <li><em>for 5 currencies</em> - bitcoin (BTC), bitcoin cash (BCH), etherum (ETH), litecoin (LTC) and ripple (XRP)</li>
 <li><em>for 5 exchanges</em> - Coinbase, Kraken, Bitstamp, Bitfinex and Cex.io</li>
 </ul>
-<p>This was easily done using an infinite loop that called the functions described above. The exact script used for this work is available <a href="https://github.com/holtzy/Crypto-Arbitrage/blob/master/FUNCTIONS/Run_API_public_market_harvest.R">here</a>. 800,000 data points were recovered.</p>
+<p>This was easily done using an infinite loop that called the functions described above. The exact script used for this work is available <a href="https://github.com/ymju86/Crypto-Arbitrage/blob/master/FUNCTIONS/Run_API_public_market_harvest.R">here</a>. 800,000 data points were recovered.</p>
 <p><br></p>
 <p>The resulting dataset is available on <a href="">github</a> in a compressed format. You can easily read it in R doing:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="co"># Load the data</span>
-<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata&quot;</span>))  
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata&quot;</span>))  
 
 <span class="co"># Have a look to the first lines</span>
 <span class="kw">head</span>(Ticker)</code></pre></div>
 <p><br></p>
 <p>As a teaser, here is the evolution of the etherum price on Bitstamp on this period of time:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the data</span>
-<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/holtzy/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata&quot;</span>))
+<span class="kw">load</span>(<span class="kw">url</span>(<span class="st">&quot;https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata&quot;</span>))
 
 <span class="co"># Make the plot</span>
 <span class="kw">library</span>(hrbrthemes)
@@ -347,7 +347,7 @@ Ticker <span class="op">%&gt;%</span>
 <p>The next step take this dataset and quantifies the differences between platform. If differences are big enough, we have a chance to perform arbitrage.</p>
 <br>
 <center>
-<a class="btn btn-primary" href="https://holtzy.github.io/Crypto-Arbitrage/CONTENT/differences.html">Quantifying differences</a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">Quantifying differences</a>
 </center>
 <p><br><br></p>
 </div>
@@ -358,16 +358,14 @@ Ticker <span class="op">%&gt;%</span>
 
 &nbsp;
 <hr />
-<p style="text-align: center;">A work by <a href="https://github.com/holtzy/">Yan Holtz</a> for <a href="https://data-to-viz.com">data-to-viz.com</a></p>
 
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- Add font awesome icons -->
 <p style="text-align: center;">
-	<a href="https://twitter.com/r_graph_gallery?lang=en" class="fa fa-twitter"></a>
-	<a href="https://www.linkedin.com/in/yan-holtz-2477534a/" class="fa fa-linkedin"></a>
-	<a href="https://github.com/holtzy/" class="fa fa-github"></a>
+	<a href="https://www.linkedin.com/in/youngminju/" class="fa fa-linkedin"></a>
+	<a href="https://github.com/ymju86/" class="fa fa-github"></a>
 </p>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

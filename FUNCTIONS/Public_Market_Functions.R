@@ -1,5 +1,3 @@
-# A script by Yan Holtz - yan.holtz.data@gmail.com
-
 # This file displays a set of functions allowing to call the public APIs of several cryptocurrency platforms
 # All APIs have their particularity. Each function call the APIs to retrieve the 'ticker' of each platform
 
