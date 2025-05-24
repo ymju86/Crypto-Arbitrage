@@ -1,6 +1,6 @@
 Crypto arbitrage: a feasibility analysis
 ===================
-
+https://ymju86.github.io/Crypto-Arbitrage/
 
 <br>
 
