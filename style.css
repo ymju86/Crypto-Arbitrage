@@ -22,7 +22,7 @@ pre {
  }
 
 a {
-  color: #Ffd700;
+  color: #8FBC8F;
 }
 
 
@@ -34,9 +34,9 @@ a {
 }
 
 .btn-default {
-    color: #Ffd700;
+    color: #8FBC8F;
     background-color: #ffffff;
-    border-color: #Ffd700;
+    border-color: #8FBC8F;
 }
 
 
@@ -50,13 +50,13 @@ a {
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #Ffd700;
+    color: #8FBC8F;
     background-color: transparent;
-    border-bottom-color: #Ffd700;
+    border-bottom-color: #8FBC8F;
     border-bottom-style: solid;
 }
 .navbar-default .navbar-brand {
-    color: #Ffd700;
+    color: #8FBC8F;
     background-color: transparent;
 }
 

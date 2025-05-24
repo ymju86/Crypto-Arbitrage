@@ -9,7 +9,7 @@ p {
 }
 
 a {
-  color: #Ffd700;
+  color: #8FBC8F;
 }
 
 a:hover {
@@ -17,7 +17,7 @@ a:hover {
 }
 
 .text-primary {
-  color: #Ffd700 !important;
+  color: #8FBC8F !important;
 }
 
 h1,
@@ -71,14 +71,14 @@ section h3.section-subheading {
 
 .btn-primary {
   background-color: transparent;
-  border-color: #Ffd700;
-  color: #Ffd700;
+  border-color: #8FBC8F;
+  color: #8FBC8F;
   border-width: medium;
 }
 
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
-  background-color: #Ffd700 !important;
-  border-color: #Ffd700 !important;
+  background-color: #8FBC8F !important;
+  border-color: #8FBC8F !important;
   color: white;
 }
 
@@ -89,36 +89,36 @@ section h3.section-subheading {
 
 .btn-secondary {
   background-color: transparent;
-  border-color: #Ffd700;
-  color: #Ffd700;
+  border-color: #8FBC8F;
+  color: #8FBC8F;
   border-width: small;
 }
 
 .btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
-  background-color: #Ffd700 !important;
-  border-color: #Ffd700 !important;
+  background-color: #8FBC8F !important;
+  border-color: #8FBC8F !important;
   color: white;
 }
 
 .btn-secondary:active, .btn-secondary:focus {
-  background-color: #Ffd700 !important;
+  background-color: #8FBC8F !important;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active {
-  background-color: #Ffd700 !important;
-  border-color: #Ffd700 !important;
+  background-color: #8FBC8F !important;
+  border-color: #8FBC8F !important;
   color: white;
 }
 
 
 
 ::-moz-selection {
-  background: #Ffd700;
+  background: #8FBC8F;
   text-shadow: none;
 }
 
 ::selection {
-  background: #Ffd700;
+  background: #8FBC8F;
   text-shadow: none;
 }
 
@@ -141,7 +141,7 @@ img::-moz-selection {
   text-transform: uppercase;
   color: white;
   border: 0;
-  background-color: #Ffd700;
+  background-color: #8FBC8F;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -151,7 +151,7 @@ img::-moz-selection {
 
 /* Color of 'from data to viz' on the top left */
 #mainNav .navbar-brand {
-  color: #Ffd700;
+  color: #8FBC8F;
   font-family: 'Kaushan Script', 'Helvetica Neue', Helvetica, Arial, cursive;
 }
 
@@ -177,9 +177,9 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
-  color: #Ffd700;
+  color: #8FBC8F;
   background-color: white;
-  border-bottom: 5px solid #Ffd700;
+  border-bottom: 5px solid #8FBC8F;
 }
 
 
@@ -924,7 +924,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
       height: 15px;
       width: 15px;
       margin: 0 2px;
-      background-color: #Ffd700;
+      background-color: #8FBC8F;
       border-radius: 50%;
       display: inline-block;
       transition: background-color 0.6s ease;
@@ -970,7 +970,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 
     .mystory {
-      fill: #Ffd700;
+      fill: #8FBC8F;
       font-size: 16px;
       text-align: center;  
     }
