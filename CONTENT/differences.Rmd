@@ -43,6 +43,7 @@ The following visualization demonstrates the price evolution of Ethereum across 
 ```{r load_data, fig.align="center", warning=FALSE, cache=TRUE, fig.width=10, message=FALSE, fig.height=5}
 # Load required libraries for analysis
 library(tidyverse)
+library(ggplot2)
 library(DT)
 library(plotly)
 library(hrbrthemes)
