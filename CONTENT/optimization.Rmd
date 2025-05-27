@@ -44,7 +44,7 @@ library(hrbrthemes)
 library(lubridate)
 
 # Load result
-load(url("https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata"))
+load("../DATA/public_ticker_harvest.Rdata")
 Ticker$last <- as.numeric(Ticker$last)
 Ticker= head(Ticker, 100000)
 

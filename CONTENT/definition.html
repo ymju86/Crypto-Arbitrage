@@ -17,7 +17,7 @@
 
 <style>
 .myheader {
-  background-image: url("https://github.com/ymju86/Crypto-Arbitrage/raw/master/img/area_bitcoin_fadded_long.png");
+  background-image: url("https://github.com/holtzy/Crypto-Arbitrage/raw/master/img/area_bitcoin_fadded_long.png");
     min-height: 400px; 
     background-size: 10% 100%; !important
 
@@ -42,11 +42,12 @@
 
 <div class="myheader" style="text-align: center;">
   <br>
-  <div style="text-align: left; margin-left: 5%"><a href="https://ymju86.github.io/Crypto-Arbitrage/">HOME</a></div>
+  <div style="text-align: left; margin-left: 5%"><a href="https://holtzy.github.io/Crypto-Arbitrage/">HOME</a></div>
   <br><br>
   <br><br>
-  <p class="mytitle">What is arbitrage</p>
-  <p style="color: grey; font-size: 16px;">What is it? How does it work? What are the potential limits?</p>
+  <p class="mytitle">Arbitrage Theory and Implementation</p>
+  <p style="color: grey; font-size: 16px;">Understanding Market
+Inefficiencies and Risk-Free Profit Mechanisms</p>
   <br>
   <br>
   <br><br>
@@ -56,14 +57,24 @@
 
 
 
-<title></title>
+<title>definition.knit</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="libs/navigation-1.1/tabsets.js"></script>
 <script src="libs/navigation-1.1/codefolding.js"></script>
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
@@ -72,41 +83,70 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.sourceCode {
   overflow-x: visible;
 }
@@ -218,212 +258,391 @@ $(document).ready(function () {
 <div class="mycontent">
 <p><br><br></p>
 <blockquote>
-<p>“Arbitrage is the practice of taking advantage of a price difference between two or more markets”</p>
+<p><strong>“Arbitrage is the practice of taking advantage of a price
+difference between two or more markets”</strong></p>
 </blockquote>
 <div style="text-align: right">
-<i><a href="https://en.wikipedia.org/wiki/Arbitrage">Wikipedia</a></i>
+<p><i><a href="https://en.wikipedia.org/wiki/Arbitrage">Wikipedia</a></i></p>
 </div>
-<h1 id="definition">Definition</h1>
+<div id="theoretical-foundation" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Theoretical
+Foundation</h1>
 <hr />
-<p>Crypto currencies are bought and sold on different <code>exchanges</code>. Basically it is like a bank, but for crypto. The price is not allways exactly the same on 2 exchanges, as shown <a href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">here</a>. It is thus possible to buy a crypto where the price is low, and sell it instantly where the price is high to realize a gain without taking any risk.</p>
-<p>Consider the following situation as an example:</p>
+<p><strong>Arbitrage</strong> represents one of the fundamental concepts
+in financial markets, describing the simultaneous purchase and sale of
+identical or equivalent assets in different markets to profit from price
+discrepancies. In cryptocurrency markets, this principle applies to the
+<strong>price variations</strong> observed across different exchanges
+for the same digital asset.</p>
+<p>As demonstrated in our <a
+href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">price
+analysis</a>, cryptocurrency exchanges do not always maintain identical
+prices for the same asset. These <strong>market inefficiencies</strong>
+create opportunities for risk-free profit through systematic arbitrage
+strategies.</p>
+<p><strong>Classical Arbitrage Example:</strong></p>
+<p>Consider the following scenario involving Ethereum trading:</p>
 <ul>
-<li><em>step 1</em> - the price of etherum is 700 euros on Kraken (exchange 1). I take 700 euros and buy 1 Etherum</li>
-<li><em>step 2</em> - I send this etherum to Bitstamp (exchange 2)</li>
-<li><em>step 3</em> - I sell the etherum on Bitstamp, but the price is different: 750. Thus I now have 750 euros, which is a gain of 50 euros.</li>
-<li><em>Again</em></li>
+<li><strong>Step 1</strong>: Ethereum trades at €700 on Kraken
+Exchange</li>
+<li><strong>Step 2</strong>: Simultaneously, Ethereum trades at €750 on
+Bitstamp Exchange<br />
+</li>
+<li><strong>Step 3</strong>: Purchase 1 ETH on Kraken for €700</li>
+<li><strong>Step 4</strong>: Transfer the ETH to Bitstamp</li>
+<li><strong>Step 5</strong>: Sell 1 ETH on Bitstamp for €750</li>
+<li><strong>Result</strong>: €50 profit (7.1% return) with theoretically
+zero market risk</li>
 </ul>
 <p><br></p>
-<p>Here is an illustration using tomatoes, buy at 1 euro / kilo, sold at 1.1 euros / kilo. The idea is to do the same, but instantly and using crypto instead of tomatoes.</p>
+<p><strong>Conceptual Illustration:</strong> The following diagram
+illustrates the arbitrage principle using a simplified commodity example
+- purchasing tomatoes at €1.00/kg and selling at €1.10/kg. The same
+fundamental principle applies to cryptocurrency arbitrage, but with
+<strong>instantaneous execution</strong> and <strong>digital asset
+transfers</strong>.</p>
 <br><br>
 <center>
-<img src="IMG/arbitrage_def.png" alt="img" width="600" height="700">
+<img src="IMG/arbitrage_def.png" alt="Arbitrage Concept Illustration" width="600" height="700">
 </center>
 <p><br><br></p>
-<h1 id="limitation">Limitation</h1>
+</div>
+<div id="market-constraints-and-limitations" class="section level1"
+number="2">
+<h1><span class="header-section-number">2</span> Market Constraints and
+Limitations</h1>
 <hr />
-<p>Of course the naive example described above encouters several limit in real life. Here is a list of them:</p>
+<p>While the theoretical arbitrage model appears straightforward,
+<strong>real-world implementation</strong> encounters several
+significant constraints that impact profitability and feasibility:</p>
+<div id="economic-constraints" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Economic
+Constraints</h2>
 <ul>
-<li><code>Price differences are rare</code>: you can read the dedicated page where I quantified these differences</li>
-<li><code>Transaction have fees</code>: each time you buy, sell or transfer crypto, fees apply. In most of the exchanges there is a 0.25% fee to buy and sell</li>
-<li><code>Prices evolve quickly</code>: buy the time you discovered a price discrepancy, prices are already different. This is called <em>Slippage risk</em>. Doing arbitrage without an automatic bot is impossible.</li>
-<li><code>Crypto transfer takes time</code>: you can buy and sell crypto instantly, however it takes time to send it to another exchange or to/from your bank account</li>
-<li><code>Concentration risk</code>: if it is always the same exchange that is more expensive, all your money will ends up in it. You won’t be able to do any new transaction until you rebalance funds.</li>
-<li><code>Price volatility</code>: let’s say you have a efficient arbitrage algorithm that makes 1% a day. If the crypto price drops down when you have some, your loss will probably higher than your gains.</li>
+<li><strong>Price Difference Frequency</strong>: As quantified in our
+analysis, significant price discrepancies (&gt;1%) occur only 200-400
+times daily per currency pair</li>
+<li><strong>Transaction Costs</strong>: Each buy/sell operation incurs
+fees, typically 0.25% per transaction on most exchanges</li>
+<li><strong>Spread Costs</strong>: The bid-ask spread creates additional
+costs beyond stated transaction fees</li>
+<li><strong>Minimum Trade Sizes</strong>: Exchanges impose minimum order
+values that may limit small-scale arbitrage</li>
 </ul>
-<h1 id="the-plan">The plan</h1>
-<hr />
-<p>Most of the limitations above do not have any workaround. However it is possible to change a bit the arbitrage strategy to avoid transfering funds from one exchange to another. Here is how it works:</p>
+</div>
+<div id="technical-constraints" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Technical
+Constraints</h2>
 <ul>
-<li><em>step1</em> - crypto is cheaper on exchange 1 than on exchange 2. I buy some crypto on it.</li>
-<li><em>step2</em> - in the same time, I sell exactly the same amount of crypto on exchange 2.</li>
-<li><em>step3</em> - wait for a new price differences in the other side.</li>
-<li><em>step4</em> - perform exactly the same think but in the other side.</li>
-<li><em>Again</em></li>
+<li><strong>Market Velocity</strong>: Price discrepancies often
+disappear within seconds, requiring automated execution systems</li>
+<li><strong>Slippage Risk</strong>: Order execution at different prices
+than expected due to market movement</li>
+<li><strong>Transfer Delays</strong>: Cryptocurrency transfers between
+exchanges can take minutes to hours</li>
+<li><strong>API Limitations</strong>: Rate limits and latency in
+exchange APIs affect execution speed</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(gganimate)
-<span class="kw">library</span>(tweenr)
-
-<span class="co"># Initial data</span>
-init &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
-  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">4</span>),
-  <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>),
-  <span class="dt">value =</span> <span class="kw">rep</span>(<span class="dv">100</span>, <span class="dv">4</span>),
-  <span class="dt">tot =</span> <span class="kw">rep</span>(<span class="dv">200</span>,<span class="dv">4</span>),
-  <span class="dt">tot_crypto =</span> <span class="kw">rep</span>(<span class="dv">200</span>,<span class="dv">4</span>),
-  <span class="dt">arrow1 =</span> <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>),
-  <span class="dt">arrow2 =</span> <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>),
-  <span class="dt">arrow3 =</span> <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>),
-  <span class="dt">arrow4 =</span> <span class="kw">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>)
-)
-
-<span class="co"># A function to trade data</span>
-trade1 &lt;-<span class="st"> </span><span class="cf">function</span>(don){
-  totrade=<span class="dv">50</span>
-  gain=<span class="fl">1.8</span>
-  don<span class="op">$</span>value[<span class="dv">1</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>totrade
-  don<span class="op">$</span>value[<span class="dv">2</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>totrade
-  don<span class="op">$</span>tot &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">3</span>]
-  don<span class="op">$</span>tot_crypto &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">4</span>]
-  don<span class="op">$</span>arrow1 &lt;-<span class="st"> </span><span class="dv">1</span>
-  don<span class="op">$</span>arrow2 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow3 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow4 &lt;-<span class="st"> </span><span class="dv">0</span>
-  <span class="kw">return</span>(don)
-}
-trade1bis &lt;-<span class="st"> </span><span class="cf">function</span>(don){
-  totrade=<span class="dv">50</span>
-  gain=<span class="fl">1.8</span>
-  don<span class="op">$</span>value[<span class="dv">3</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">3</span>] <span class="op">+</span><span class="st"> </span>totrade<span class="op">*</span>gain 
-  don<span class="op">$</span>value[<span class="dv">4</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">4</span>] <span class="op">-</span><span class="st"> </span>totrade
-  don<span class="op">$</span>tot &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">3</span>]
-  don<span class="op">$</span>tot_crypto &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">4</span>]
-  don<span class="op">$</span>arrow1 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow2 &lt;-<span class="st"> </span><span class="dv">1</span>
-  don<span class="op">$</span>arrow3 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow4 &lt;-<span class="st"> </span><span class="dv">0</span>
-  <span class="kw">return</span>(don)
-}
-trade2 &lt;-<span class="st"> </span><span class="cf">function</span>(don){
-  totrade=<span class="dv">50</span>
-  gain=<span class="fl">1.8</span>
-  don<span class="op">$</span>value[<span class="dv">3</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">3</span>] <span class="op">-</span><span class="st"> </span>totrade
-  don<span class="op">$</span>value[<span class="dv">4</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">4</span>] <span class="op">+</span><span class="st"> </span>totrade
-  don<span class="op">$</span>tot &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">3</span>]
-  don<span class="op">$</span>tot_crypto &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">4</span>]
-  don<span class="op">$</span>arrow1 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow2 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow3 &lt;-<span class="st"> </span><span class="dv">1</span>
-  don<span class="op">$</span>arrow4 &lt;-<span class="st"> </span><span class="dv">0</span>
-  <span class="kw">return</span>(don)
-}
-trade2bis &lt;-<span class="st"> </span><span class="cf">function</span>(don){
-  totrade=<span class="dv">50</span>
-  gain=<span class="fl">1.8</span>
-  don<span class="op">$</span>value[<span class="dv">1</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>totrade<span class="op">*</span>gain
-  don<span class="op">$</span>value[<span class="dv">2</span>] &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">2</span>] <span class="op">-</span><span class="st"> </span>totrade
-  don<span class="op">$</span>tot &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">3</span>]
-  don<span class="op">$</span>tot_crypto &lt;-<span class="st"> </span>don<span class="op">$</span>value[<span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>don<span class="op">$</span>value[<span class="dv">4</span>]
-  don<span class="op">$</span>arrow1 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow2 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow3 &lt;-<span class="st"> </span><span class="dv">0</span>
-  don<span class="op">$</span>arrow4 &lt;-<span class="st"> </span><span class="dv">1</span>
-  <span class="kw">return</span>(don)
-}
-
-
-<span class="co"># Loop to do several transaction</span>
-mylist &lt;-<span class="st"> </span><span class="kw">list</span>(init, init, init)
-tmp &lt;-<span class="st"> </span>init
-num &lt;-<span class="st"> </span><span class="dv">1</span>
-<span class="co"># i is the number of cycle</span>
-<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span>){
-  <span class="co">#step1: </span>
-  num &lt;-<span class="st"> </span>num <span class="op">+</span><span class="st"> </span><span class="dv">1</span> ; tmp &lt;-<span class="st"> </span><span class="kw">trade1</span>(tmp) ; mylist[[num]] &lt;-<span class="st"> </span>tmp
-  
-  <span class="co">#step2</span>
-  num &lt;-<span class="st"> </span>num <span class="op">+</span><span class="st"> </span><span class="dv">1</span> ; tmp &lt;-<span class="st"> </span><span class="kw">trade1bis</span>(tmp) ; mylist[[num]] &lt;-<span class="st"> </span>tmp
-  
-  <span class="co">#step3</span>
-  num &lt;-<span class="st"> </span>num <span class="op">+</span><span class="st"> </span><span class="dv">1</span> ; tmp &lt;-<span class="st"> </span><span class="kw">trade2</span>(tmp) ;  mylist[[num]] &lt;-<span class="st"> </span>tmp
-  
-  <span class="co">#step4</span>
-  num &lt;-<span class="st"> </span>num <span class="op">+</span><span class="st"> </span><span class="dv">1</span> ; tmp &lt;-<span class="st"> </span><span class="kw">trade2bis</span>(tmp) ; mylist[[num]] &lt;-<span class="st"> </span>tmp
-  }
-mylist
-
-<span class="co"># Use tweenR</span>
-tf &lt;-<span class="st"> </span><span class="kw">tween_states</span>(mylist, <span class="dt">tweenlength =</span> <span class="fl">0.01</span>, <span class="dt">statelength =</span> <span class="fl">0.1</span>, <span class="dt">ease =</span> <span class="kw">c</span>(<span class="st">&#39;cubic-in-out&#39;</span>), <span class="dt">nframes =</span> <span class="dv">100</span>)
-tf
-
-
-<span class="co"># Animation</span>
-p &lt;-<span class="st"> </span>tf   <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>x, <span class="dt">y=</span>y, <span class="dt">size=</span>value, <span class="dt">frame=</span>.frame)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_void</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_point</span>( <span class="kw">aes</span>(<span class="dt">color=</span><span class="kw">paste</span>(x,y))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;#69b3a2&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;#69b3a2&quot;</span>, <span class="st">&quot;purple&quot;</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">scale_size_continuous</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">30</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="op">+</span>
-<span class="st">  </span>
-<span class="st">  </span><span class="co"># Quantity of money</span>
-<span class="st">  </span><span class="kw">geom_text</span>( <span class="kw">aes</span>(<span class="dt">label=</span><span class="kw">round</span>(value,<span class="dv">0</span>), <span class="dt">x=</span>x, <span class="dt">y=</span>y<span class="op">-</span><span class="fl">0.5</span>, <span class="dt">color=</span><span class="kw">paste</span>(x,y)), <span class="dt">size=</span><span class="dv">6</span>) <span class="op">+</span>
-<span class="st">  </span>
-<span class="st">  </span><span class="co"># Exchange names</span>
-<span class="st">  </span><span class="kw">geom_label</span>( <span class="dt">x=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">y=</span><span class="dv">3</span>, <span class="dt">label=</span><span class="st">&quot;Exchange 1&quot;</span>, <span class="dt">color=</span><span class="st">&quot;purple&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_label</span>( <span class="dt">x=</span><span class="op">-</span><span class="dv">1</span>, <span class="dt">y=</span><span class="dv">1</span>, <span class="dt">label=</span><span class="st">&quot;Exchange 2&quot;</span>, <span class="dt">color=</span><span class="st">&quot;#69b3a2&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span>
-<span class="st">  </span><span class="co"># Arrows: up right / bottom left / bottom right / up left</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">alpha=</span>arrow1), <span class="dt">x=</span><span class="fl">1.8</span>, <span class="dt">xend=</span><span class="fl">3.2</span>, <span class="dt">y=</span><span class="dv">3</span>, <span class="dt">yend=</span><span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">alpha=</span>arrow2), <span class="dt">x=</span><span class="fl">3.2</span>, <span class="dt">xend=</span><span class="fl">1.8</span>, <span class="dt">y=</span><span class="dv">1</span>, <span class="dt">yend=</span><span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">alpha=</span>arrow3), <span class="dt">x=</span><span class="fl">1.8</span>, <span class="dt">xend=</span><span class="fl">3.2</span>, <span class="dt">y=</span><span class="dv">1</span>, <span class="dt">yend=</span><span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">alpha=</span>arrow4), <span class="dt">x=</span><span class="fl">3.2</span>, <span class="dt">xend=</span><span class="fl">1.8</span>, <span class="dt">y=</span><span class="dv">3</span>, <span class="dt">yend=</span><span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">arrow =</span> <span class="kw">arrow</span>(<span class="dt">length =</span> <span class="kw">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="op">+</span>
-<span class="st">  </span>
-<span class="st">  </span><span class="co"># control alpha</span>
-<span class="st">  </span><span class="kw">scale_alpha_continuous</span>(<span class="dt">range=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="op">+</span>
-<span class="st">   </span>
-<span class="st">  </span><span class="co"># Barplot money (y=ax + b avec a=(yb-ya)/(xb-xa) et b=y-ax at a given point)</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">x=</span><span class="dv">1</span>, <span class="dt">xend=</span><span class="dv">1</span>, <span class="dt">y=</span><span class="op">-</span><span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">yend=</span>(<span class="dv">0</span><span class="op">-</span>(<span class="op">-</span><span class="fl">0.8</span>)<span class="op">/</span>(<span class="dv">500</span><span class="op">-</span><span class="dv">200</span>))<span class="op">*</span>tot<span class="op">-</span><span class="fl">1.33</span>), <span class="dt">color=</span><span class="st">&quot;yellow&quot;</span>, <span class="dt">size=</span><span class="dv">22</span>, <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">x=</span><span class="dv">4</span>, <span class="dt">xend=</span><span class="dv">4</span>, <span class="dt">y=</span><span class="op">-</span><span class="dv">1</span>, <span class="kw">aes</span>(<span class="dt">yend=</span>(<span class="dv">0</span><span class="op">-</span>(<span class="op">-</span><span class="fl">0.8</span>)<span class="op">/</span>(<span class="dv">500</span><span class="op">-</span><span class="dv">200</span>))<span class="op">*</span>tot_crypto<span class="op">-</span><span class="fl">1.33</span>), <span class="dt">color=</span><span class="st">&quot;yellow&quot;</span>, <span class="dt">size=</span><span class="dv">22</span>, <span class="dt">alpha=</span><span class="fl">0.7</span>) <span class="op">+</span>
-<span class="st">  </span>
-<span class="st">  </span><span class="co"># Total</span>
-<span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span><span class="op">-</span>.<span class="dv">5</span>, <span class="dt">label=</span><span class="st">&quot;Total Euro&quot;</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">4</span>, <span class="dt">y=</span><span class="op">-</span>.<span class="dv">5</span>, <span class="dt">label=</span><span class="st">&quot;Total Crypto&quot;</span>, <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span><span class="op">-</span>.<span class="dv">8</span>, <span class="kw">aes</span>(<span class="dt">label=</span><span class="kw">round</span>(tot,<span class="dv">0</span>)), <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_text</span>( <span class="dt">x=</span><span class="dv">4</span>, <span class="dt">y=</span><span class="op">-</span>.<span class="dv">8</span>, <span class="kw">aes</span>(<span class="dt">label=</span><span class="kw">round</span>(tot_crypto,<span class="dv">0</span>)), <span class="dt">color=</span><span class="st">&quot;grey&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span>
-<span class="st">  </span><span class="co"># Money</span>
-<span class="st">  </span><span class="kw">geom_label</span>( <span class="dt">x=</span><span class="dv">1</span>, <span class="dt">y=</span><span class="dv">4</span>, <span class="dt">label=</span><span class="st">&quot;Euro&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_label</span>( <span class="dt">x=</span><span class="dv">4</span>, <span class="dt">y=</span><span class="dv">4</span>, <span class="dt">label=</span><span class="st">&quot;Crypto&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">size=</span><span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span>
-
-<span class="st">  </span><span class="co"># Limits</span>
-<span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">5</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw">ylim</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">4</span>)
-
-<span class="kw">gganimate</span>(p, <span class="dt">interval =</span> .<span class="dv">2</span>, <span class="dt">title_frame =</span> F, <span class="dt">filename=</span><span class="st">&quot;IMG/arbitrage.gif&quot;</span>)</code></pre></div>
-<br><br>
-<center>
-<img src="IMG/arbitrage.gif" alt="img" width="600" height="700">
-</center>
-<p><br><br></p>
-<h1 id="litterature">Litterature</h1>
-<hr />
-<p>Several methods of arbitrage exist and I’m far from being the only one trying to do it. Here is a selection of a few really promising project that are worth visiting:</p>
+</div>
+<div id="operational-constraints" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Operational
+Constraints</h2>
 <ul>
-<li><a href="http://cryptoarbitrager.com">CryptoArbitrager</a>: use the fact that the evolution of different currencies are strongly correlated. Sometimes a delay is observed, what is an arbitrage opportunity.</li>
-<li><a href="https://github.com/butor/blackbird">Blackbird</a>: has the advantage of being Market neutral: no loss if the global price of the currency drop down.</li>
-<li><a href="https://github.com/bitrinjani/r2">R2</a></li>
-<li><a href="https://github.com/wardbradt/peregrine">Peregrine</a></li>
+<li><strong>Capital Concentration Risk</strong>: Successful arbitrage
+may concentrate funds in consistently expensive exchanges</li>
+<li><strong>Liquidity Constraints</strong>: Large orders may impact
+market prices, reducing arbitrage margins</li>
+<li><strong>Regulatory Risk</strong>: Varying regulations across
+exchanges and jurisdictions</li>
+<li><strong>Counterparty Risk</strong>: Exchange insolvency or
+operational failures</li>
 </ul>
-<h1 id="next-step">Next step</h1>
+</div>
+<div id="market-risk-factors" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Market Risk
+Factors</h2>
+<ul>
+<li><strong>Volatility Exposure</strong>: Holding cryptocurrency during
+transfer periods exposes capital to price volatility</li>
+<li><strong>Correlation Risk</strong>: Market-wide movements can
+eliminate arbitrage opportunities</li>
+<li><strong>Execution Risk</strong>: Technical failures during critical
+trading moments</li>
+</ul>
+</div>
+</div>
+<div id="advanced-arbitrage-strategy-paired-trading"
+class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Advanced Arbitrage
+Strategy: Paired Trading</h1>
 <hr />
-<p>The next step simulates an arbitrage algorithm on a 2 weeks period to assess the potential gain.</p>
+<p>To mitigate the <strong>transfer delay problem</strong> and reduce
+<strong>volatility exposure</strong>, sophisticated arbitrage strategies
+employ <strong>simultaneous paired trading</strong> across exchanges
+without physical asset transfers.</p>
+<p><strong>Enhanced Strategy Framework:</strong></p>
+<ul>
+<li><strong>Phase 1</strong>: Identify price discrepancy (Exchange A
+&lt; Exchange B)</li>
+<li><strong>Phase 2</strong>: Simultaneously execute:
+<ul>
+<li><strong>Buy</strong> cryptocurrency on Exchange A (lower price)</li>
+<li><strong>Sell</strong> equivalent amount on Exchange B (higher
+price)</li>
+</ul></li>
+<li><strong>Phase 3</strong>: Monitor for reverse price discrepancy
+(Exchange A &gt; Exchange B)<br />
+</li>
+<li><strong>Phase 4</strong>: Execute reverse trades:
+<ul>
+<li><strong>Sell</strong> on Exchange A</li>
+<li><strong>Buy</strong> on Exchange B</li>
+</ul></li>
+<li><strong>Result</strong>: Profit from both directions while
+maintaining market-neutral position</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(tweenr)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co"># Initialize portfolio simulation data</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>initial_state <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">4</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">rep</span>(<span class="dv">100</span>, <span class="dv">4</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="at">total_fiat =</span> <span class="fu">rep</span>(<span class="dv">200</span>,<span class="dv">4</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  <span class="at">total_crypto =</span> <span class="fu">rep</span>(<span class="dv">200</span>,<span class="dv">4</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="at">arrow1 =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  <span class="at">arrow2 =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  <span class="at">arrow3 =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="at">arrow4 =</span> <span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>)</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co"># Define trading functions for simulation</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>execute_trade_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(portfolio){</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  trade_amount <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  profit_margin <span class="ot">=</span> <span class="fl">1.8</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="sc">-</span> trade_amount</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="sc">+</span> trade_amount</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_fiat <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">3</span>]</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_crypto <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">4</span>]</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow1 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow2 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow3 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow4 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>  <span class="fu">return</span>(portfolio)</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>}</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>execute_trade_1_complete <span class="ot">&lt;-</span> <span class="cf">function</span>(portfolio){</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>  trade_amount <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>  profit_margin <span class="ot">=</span> <span class="fl">1.8</span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">3</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">3</span>] <span class="sc">+</span> trade_amount <span class="sc">*</span> profit_margin </span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">4</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">4</span>] <span class="sc">-</span> trade_amount</span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_fiat <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">3</span>]</span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_crypto <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">4</span>]</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow1 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow2 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow3 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow4 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a>  <span class="fu">return</span>(portfolio)</span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a>}</span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a>execute_trade_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(portfolio){</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a>  trade_amount <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a>  profit_margin <span class="ot">=</span> <span class="fl">1.8</span></span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">3</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">3</span>] <span class="sc">-</span> trade_amount</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">4</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">4</span>] <span class="sc">+</span> trade_amount</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_fiat <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">3</span>]</span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_crypto <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">4</span>]</span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow1 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow2 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow3 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow4 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a>  <span class="fu">return</span>(portfolio)</span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a>}</span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a>execute_trade_2_complete <span class="ot">&lt;-</span> <span class="cf">function</span>(portfolio){</span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a>  trade_amount <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a>  profit_margin <span class="ot">=</span> <span class="fl">1.8</span></span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="sc">+</span> trade_amount <span class="sc">*</span> profit_margin</span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a>  portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="sc">-</span> trade_amount</span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_fiat <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">1</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">3</span>]</span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a>  portfolio<span class="sc">$</span>total_crypto <span class="ot">&lt;-</span> portfolio<span class="sc">$</span>value[<span class="dv">2</span>] <span class="sc">+</span> portfolio<span class="sc">$</span>value[<span class="dv">4</span>]</span>
+<span id="cb1-68"><a href="#cb1-68" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow1 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow2 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow3 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb1-71"><a href="#cb1-71" tabindex="-1"></a>  portfolio<span class="sc">$</span>arrow4 <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a>  <span class="fu">return</span>(portfolio)</span>
+<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a>}</span>
+<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a><span class="co"># Execute trading simulation sequence</span></span>
+<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a>trading_sequence <span class="ot">&lt;-</span> <span class="fu">list</span>(initial_state, initial_state, initial_state)</span>
+<span id="cb1-77"><a href="#cb1-77" tabindex="-1"></a>current_portfolio <span class="ot">&lt;-</span> initial_state</span>
+<span id="cb1-78"><a href="#cb1-78" tabindex="-1"></a>sequence_step <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-79"><a href="#cb1-79" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" tabindex="-1"></a><span class="co"># Simulate one complete arbitrage cycle</span></span>
+<span id="cb1-81"><a href="#cb1-81" tabindex="-1"></a><span class="cf">for</span>(cycle <span class="cf">in</span> <span class="dv">1</span>){</span>
+<span id="cb1-82"><a href="#cb1-82" tabindex="-1"></a>  <span class="co"># Execute first trade pair</span></span>
+<span id="cb1-83"><a href="#cb1-83" tabindex="-1"></a>  sequence_step <span class="ot">&lt;-</span> sequence_step <span class="sc">+</span> <span class="dv">1</span> </span>
+<span id="cb1-84"><a href="#cb1-84" tabindex="-1"></a>  current_portfolio <span class="ot">&lt;-</span> <span class="fu">execute_trade_1</span>(current_portfolio) </span>
+<span id="cb1-85"><a href="#cb1-85" tabindex="-1"></a>  trading_sequence[[sequence_step]] <span class="ot">&lt;-</span> current_portfolio</span>
+<span id="cb1-86"><a href="#cb1-86" tabindex="-1"></a>  </span>
+<span id="cb1-87"><a href="#cb1-87" tabindex="-1"></a>  <span class="co"># Complete first trade</span></span>
+<span id="cb1-88"><a href="#cb1-88" tabindex="-1"></a>  sequence_step <span class="ot">&lt;-</span> sequence_step <span class="sc">+</span> <span class="dv">1</span> </span>
+<span id="cb1-89"><a href="#cb1-89" tabindex="-1"></a>  current_portfolio <span class="ot">&lt;-</span> <span class="fu">execute_trade_1_complete</span>(current_portfolio) </span>
+<span id="cb1-90"><a href="#cb1-90" tabindex="-1"></a>  trading_sequence[[sequence_step]] <span class="ot">&lt;-</span> current_portfolio</span>
+<span id="cb1-91"><a href="#cb1-91" tabindex="-1"></a>  </span>
+<span id="cb1-92"><a href="#cb1-92" tabindex="-1"></a>  <span class="co"># Execute reverse trade pair  </span></span>
+<span id="cb1-93"><a href="#cb1-93" tabindex="-1"></a>  sequence_step <span class="ot">&lt;-</span> sequence_step <span class="sc">+</span> <span class="dv">1</span> </span>
+<span id="cb1-94"><a href="#cb1-94" tabindex="-1"></a>  current_portfolio <span class="ot">&lt;-</span> <span class="fu">execute_trade_2</span>(current_portfolio) </span>
+<span id="cb1-95"><a href="#cb1-95" tabindex="-1"></a>  trading_sequence[[sequence_step]] <span class="ot">&lt;-</span> current_portfolio</span>
+<span id="cb1-96"><a href="#cb1-96" tabindex="-1"></a>  </span>
+<span id="cb1-97"><a href="#cb1-97" tabindex="-1"></a>  <span class="co"># Complete reverse trade</span></span>
+<span id="cb1-98"><a href="#cb1-98" tabindex="-1"></a>  sequence_step <span class="ot">&lt;-</span> sequence_step <span class="sc">+</span> <span class="dv">1</span> </span>
+<span id="cb1-99"><a href="#cb1-99" tabindex="-1"></a>  current_portfolio <span class="ot">&lt;-</span> <span class="fu">execute_trade_2_complete</span>(current_portfolio) </span>
+<span id="cb1-100"><a href="#cb1-100" tabindex="-1"></a>  trading_sequence[[sequence_step]] <span class="ot">&lt;-</span> current_portfolio</span>
+<span id="cb1-101"><a href="#cb1-101" tabindex="-1"></a>}</span>
+<span id="cb1-102"><a href="#cb1-102" tabindex="-1"></a></span>
+<span id="cb1-103"><a href="#cb1-103" tabindex="-1"></a><span class="co"># Create smooth animation transitions</span></span>
+<span id="cb1-104"><a href="#cb1-104" tabindex="-1"></a>animated_data <span class="ot">&lt;-</span> <span class="fu">tween_states</span>(trading_sequence, <span class="at">tweenlength =</span> <span class="fl">0.01</span>, <span class="at">statelength =</span> <span class="fl">0.1</span>, </span>
+<span id="cb1-105"><a href="#cb1-105" tabindex="-1"></a>                             <span class="at">ease =</span> <span class="fu">c</span>(<span class="st">&#39;cubic-in-out&#39;</span>), <span class="at">nframes =</span> <span class="dv">100</span>)</span>
+<span id="cb1-106"><a href="#cb1-106" tabindex="-1"></a></span>
+<span id="cb1-107"><a href="#cb1-107" tabindex="-1"></a><span class="co"># Generate arbitrage visualization</span></span>
+<span id="cb1-108"><a href="#cb1-108" tabindex="-1"></a>arbitrage_plot <span class="ot">&lt;-</span> animated_data <span class="sc">%&gt;%</span> </span>
+<span id="cb1-109"><a href="#cb1-109" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">size=</span>value, <span class="at">frame=</span>.frame)) <span class="sc">+</span></span>
+<span id="cb1-110"><a href="#cb1-110" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb1-111"><a href="#cb1-111" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color=</span><span class="fu">paste</span>(x,y))) <span class="sc">+</span></span>
+<span id="cb1-112"><a href="#cb1-112" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;#69b3a2&quot;</span>, <span class="st">&quot;purple&quot;</span>, <span class="st">&quot;#69b3a2&quot;</span>, <span class="st">&quot;purple&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb1-113"><a href="#cb1-113" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">30</span>)) <span class="sc">+</span></span>
+<span id="cb1-114"><a href="#cb1-114" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-115"><a href="#cb1-115" tabindex="-1"></a>  </span>
+<span id="cb1-116"><a href="#cb1-116" tabindex="-1"></a>  <span class="co"># Portfolio values display</span></span>
+<span id="cb1-117"><a href="#cb1-117" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">round</span>(value,<span class="dv">0</span>), <span class="at">x=</span>x, <span class="at">y=</span>y<span class="fl">-0.5</span>, <span class="at">color=</span><span class="fu">paste</span>(x,y)), <span class="at">size=</span><span class="dv">6</span>) <span class="sc">+</span></span>
+<span id="cb1-118"><a href="#cb1-118" tabindex="-1"></a>  </span>
+<span id="cb1-119"><a href="#cb1-119" tabindex="-1"></a>  <span class="co"># Exchange labels</span></span>
+<span id="cb1-120"><a href="#cb1-120" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">3</span>, <span class="at">label=</span><span class="st">&quot;Exchange 1&quot;</span>, <span class="at">color=</span><span class="st">&quot;purple&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-121"><a href="#cb1-121" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">x=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">1</span>, <span class="at">label=</span><span class="st">&quot;Exchange 2&quot;</span>, <span class="at">color=</span><span class="st">&quot;#69b3a2&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-122"><a href="#cb1-122" tabindex="-1"></a>  </span>
+<span id="cb1-123"><a href="#cb1-123" tabindex="-1"></a>  <span class="co"># Trading arrows</span></span>
+<span id="cb1-124"><a href="#cb1-124" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">alpha=</span>arrow1), <span class="at">x=</span><span class="fl">1.8</span>, <span class="at">xend=</span><span class="fl">3.2</span>, <span class="at">y=</span><span class="dv">3</span>, <span class="at">yend=</span><span class="dv">3</span>, <span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb1-125"><a href="#cb1-125" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb1-126"><a href="#cb1-126" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">alpha=</span>arrow2), <span class="at">x=</span><span class="fl">3.2</span>, <span class="at">xend=</span><span class="fl">1.8</span>, <span class="at">y=</span><span class="dv">1</span>, <span class="at">yend=</span><span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb1-127"><a href="#cb1-127" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb1-128"><a href="#cb1-128" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">alpha=</span>arrow3), <span class="at">x=</span><span class="fl">1.8</span>, <span class="at">xend=</span><span class="fl">3.2</span>, <span class="at">y=</span><span class="dv">1</span>, <span class="at">yend=</span><span class="dv">1</span>, <span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb1-129"><a href="#cb1-129" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb1-130"><a href="#cb1-130" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">alpha=</span>arrow4), <span class="at">x=</span><span class="fl">3.2</span>, <span class="at">xend=</span><span class="fl">1.8</span>, <span class="at">y=</span><span class="dv">3</span>, <span class="at">yend=</span><span class="dv">3</span>, <span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb1-131"><a href="#cb1-131" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&quot;cm&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb1-132"><a href="#cb1-132" tabindex="-1"></a>  </span>
+<span id="cb1-133"><a href="#cb1-133" tabindex="-1"></a>  <span class="co"># Alpha control for arrows</span></span>
+<span id="cb1-134"><a href="#cb1-134" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">range=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb1-135"><a href="#cb1-135" tabindex="-1"></a>   </span>
+<span id="cb1-136"><a href="#cb1-136" tabindex="-1"></a>  <span class="co"># Portfolio total bars</span></span>
+<span id="cb1-137"><a href="#cb1-137" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">xend=</span><span class="dv">1</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">1</span>, <span class="fu">aes</span>(<span class="at">yend=</span>(<span class="dv">0</span><span class="sc">-</span>(<span class="sc">-</span><span class="fl">0.8</span>)<span class="sc">/</span>(<span class="dv">500-200</span>))<span class="sc">*</span>total_fiat<span class="fl">-1.33</span>), </span>
+<span id="cb1-138"><a href="#cb1-138" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;yellow&quot;</span>, <span class="at">size=</span><span class="dv">22</span>, <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-139"><a href="#cb1-139" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x=</span><span class="dv">4</span>, <span class="at">xend=</span><span class="dv">4</span>, <span class="at">y=</span><span class="sc">-</span><span class="dv">1</span>, <span class="fu">aes</span>(<span class="at">yend=</span>(<span class="dv">0</span><span class="sc">-</span>(<span class="sc">-</span><span class="fl">0.8</span>)<span class="sc">/</span>(<span class="dv">500-200</span>))<span class="sc">*</span>total_crypto<span class="fl">-1.33</span>), </span>
+<span id="cb1-140"><a href="#cb1-140" tabindex="-1"></a>               <span class="at">color=</span><span class="st">&quot;yellow&quot;</span>, <span class="at">size=</span><span class="dv">22</span>, <span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-141"><a href="#cb1-141" tabindex="-1"></a>  </span>
+<span id="cb1-142"><a href="#cb1-142" tabindex="-1"></a>  <span class="co"># Portfolio labels</span></span>
+<span id="cb1-143"><a href="#cb1-143" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="sc">-</span>.<span class="dv">5</span>, <span class="at">label=</span><span class="st">&quot;Total Fiat&quot;</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-144"><a href="#cb1-144" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x=</span><span class="dv">4</span>, <span class="at">y=</span><span class="sc">-</span>.<span class="dv">5</span>, <span class="at">label=</span><span class="st">&quot;Total Crypto&quot;</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-145"><a href="#cb1-145" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="sc">-</span>.<span class="dv">8</span>, <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">round</span>(total_fiat,<span class="dv">0</span>)), <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-146"><a href="#cb1-146" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x=</span><span class="dv">4</span>, <span class="at">y=</span><span class="sc">-</span>.<span class="dv">8</span>, <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">round</span>(total_crypto,<span class="dv">0</span>)), <span class="at">color=</span><span class="st">&quot;grey&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-147"><a href="#cb1-147" tabindex="-1"></a>  </span>
+<span id="cb1-148"><a href="#cb1-148" tabindex="-1"></a>  <span class="co"># Asset type labels</span></span>
+<span id="cb1-149"><a href="#cb1-149" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">y=</span><span class="dv">4</span>, <span class="at">label=</span><span class="st">&quot;Fiat Currency&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-150"><a href="#cb1-150" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">x=</span><span class="dv">4</span>, <span class="at">y=</span><span class="dv">4</span>, <span class="at">label=</span><span class="st">&quot;Cryptocurrency&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-151"><a href="#cb1-151" tabindex="-1"></a>  </span>
+<span id="cb1-152"><a href="#cb1-152" tabindex="-1"></a>  <span class="co"># Title and subtitle</span></span>
+<span id="cb1-153"><a href="#cb1-153" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Paired Arbitrage Strategy Simulation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb1-154"><a href="#cb1-154" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>, <span class="at">hjust=</span><span class="fl">0.5</span>, <span class="at">color=</span><span class="st">&quot;grey&quot;</span>))</span>
+<span id="cb1-155"><a href="#cb1-155" tabindex="-1"></a></span>
+<span id="cb1-156"><a href="#cb1-156" tabindex="-1"></a>arbitrage_plot</span></code></pre></div>
+<p><img src="definition_files/figure-html/unnamed-chunk-1-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong>Strategic Advantages:</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Eliminates Transfer Risk</strong>: No cryptocurrency
+transfers between exchanges</li>
+<li><strong>Reduces Volatility Exposure</strong>: Market-neutral
+position during holding periods<br />
+</li>
+<li><strong>Faster Execution</strong>: No waiting for blockchain
+confirmations</li>
+<li><strong>Capital Efficiency</strong>: Profits from both directional
+price movements</li>
+<li><strong>Scalability</strong>: Can be applied across multiple
+exchange pairs simultaneously</li>
+</ol>
+</div>
+<div id="risk-management-framework" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Risk Management
+Framework</h1>
+<hr />
+<p><strong>Successful arbitrage implementation</strong> requires
+comprehensive risk management addressing both
+<strong>systematic</strong> and <strong>operational</strong> risks:</p>
+<div id="capital-allocation-strategy" class="section level2"
+number="4.1">
+<h2><span class="header-section-number">4.1</span> Capital Allocation
+Strategy</h2>
+<ul>
+<li><strong>Diversification</strong>: Spread capital across multiple
+exchange pairs</li>
+<li><strong>Position Sizing</strong>: Limit individual trade size to
+manage impact costs</li>
+<li><strong>Reserve Management</strong>: Maintain adequate reserves for
+rebalancing</li>
+</ul>
+</div>
+<div id="technical-risk-controls" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Technical Risk
+Controls</h2>
+<ul>
+<li><strong>Automated Monitoring</strong>: Real-time price difference
+detection</li>
+<li><strong>Execution Limits</strong>: Maximum acceptable slippage
+thresholds</li>
+<li><strong>Failsafe Mechanisms</strong>: Automatic position closure on
+technical failures</li>
+</ul>
+</div>
+<div id="market-risk-mitigation" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Market Risk
+Mitigation</h2>
+<ul>
+<li><strong>Volatility Filters</strong>: Suspend trading during high
+volatility periods</li>
+<li><strong>Correlation Monitoring</strong>: Track inter-exchange price
+relationships</li>
+<li><strong>Liquidity Assessment</strong>: Ensure adequate market depth
+before execution</li>
+</ul>
+</div>
+</div>
+<div id="implementation-roadmap" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Implementation
+Roadmap</h1>
+<hr />
+<p>The <strong>theoretical framework</strong> established here provides
+the foundation for practical arbitrage implementation. The next phase
+involves developing <strong>automated trading systems</strong> capable
+of executing these strategies at the speed and scale required for
+profitability.</p>
+<p>Key implementation components include:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Real-time Market Data Integration</strong></li>
+<li><strong>Automated Decision Algorithms</strong><br />
+</li>
+<li><strong>High-Speed Order Execution Systems</strong></li>
+<li><strong>Risk Management Protocols</strong></li>
+<li><strong>Performance Monitoring and Optimization</strong></li>
+</ol>
 <br>
 <center>
-<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">&lt; Quantifying differences</a> <a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/optimization.html">Simulating arbitrage &gt;</a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/optimization.html">Explore
+Strategy Optimization →</a>
 </center>
 <p><br><br></p>
+</div>
 </div>
 
 
@@ -439,7 +658,7 @@ p &lt;-<span class="st"> </span>tf   <span class="op">%&gt;%</span><span class="
 <!-- Add font awesome icons -->
 <p style="text-align: center;">
 	<a href="https://www.linkedin.com/in/youngminju/" class="fa fa-linkedin"></a>
-	<a href="https://github.com/ymju86/" class="fa fa-github"></a>
+	<a href="https://github.com/youngminju-phd/" class="fa fa-github"></a>
 </p>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

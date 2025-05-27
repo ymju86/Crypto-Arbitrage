@@ -1,4 +1,3 @@
-base
 tidyverse
 ggplot2
 tibble
@@ -14,3 +13,6 @@ hrbrthemes
 bindrcpp
 stringr
 forcats
+rmarkdown
+knitr
+lubridate

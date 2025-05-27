@@ -1,7 +1,7 @@
 ---
 mydisqus: "public_API"
-mytitle: "Harvesting crypto currency prices"
-mysub: "Recovering 1M data points on 5 exchanges and 5 currencies"
+mytitle: "Cryptocurrency Price Data Collection"
+mysub: "Comprehensive Market Data Harvesting: 800,000+ Data Points Across 5 Exchanges"
 output:
   html_document:
       self_contained: false    
@@ -15,7 +15,7 @@ output:
       toc_depth: 2
       number_sections: TRUE
       df_print: "paged"
-      code_folding: "show"
+      code_folding: "hide"
       includes: 
         after_body: footer.html
 ---
@@ -23,127 +23,120 @@ output:
 
 <div class="mycontent">
 
-
-
-
-
-
-
-
-
-#Public exchange API
+# Public Exchange API Integration
 ***
-Crypto currencies are bought and sold on different `exchanges`. Basically it is like a bank, but for crypto. The price at which a token is traded depends on the offer and on the demand. Thus it evolves permanently, every couples of seconds.
+
+Cryptocurrency markets operate through specialized trading platforms called **exchanges**, which function as digital marketplaces for buying and selling digital assets. Unlike traditional financial institutions, these exchanges operate 24/7 with prices fluctuating continuously based on real-time supply and demand dynamics, often updating every few seconds.
 
 <br>
 
-It is possible to recover this price using the public API of exchanges. Let's say you want to know the `Bitcoin price` in the [Kraken]() exchange. You can do that in your browser, typing this URL:
+Modern cryptocurrency exchanges provide **public APIs** (Application Programming Interfaces) that enable programmatic access to real-time market data. For instance, to retrieve the current Bitcoin price from the Kraken exchange, you can access the following endpoint directly in your browser:
 
 [https://api.kraken.com/0/public/Ticker?pair=BTCEUR](https://api.kraken.com/0/public/Ticker?pair=BTCEUR)
 
-It gives you several information, three being of interest:
+This API call returns comprehensive market data including three critical price points:
 
-- `last`: the price at the last transaction
-- `bid`: price at which you can sell your crypto
-- `ask`: price at which you can buy a crypto
+- **`last`**: The price of the most recent completed transaction
+- **`bid`**: The highest price buyers are willing to pay (sell price for holders)
+- **`ask`**: The lowest price sellers are willing to accept (buy price for purchasers)
 
-
-
-
-
-#Do it programming
+# Programmatic Data Collection
 ***
 
-It is totally possible to do the same `programming`. This is handy since it will allow to recover the prices every couple of second automatically.  
+The real power of public APIs lies in their ability to be accessed **programmatically**, enabling automated data collection at scale. This capability is essential for systematic market analysis and algorithmic trading strategies.
 
-Here is an example using the R programming language to get the price of the `bitcoin` on [Kraken]() and showing it in a clean table:
+Below is a practical example using the R programming language to retrieve Bitcoin market data from Kraken and format it into a structured table:
 
 ```{r, warning=FALSE, message=FALSE, eval=TRUE}
-# package
+# Load required packages
 library(tidyverse)
 
-# Recover the information
+# Establish connection and retrieve market data
 library(RCurl)
-adress <- "https://api.kraken.com/0/public/Ticker?pair=BTCEUR"
-ticker <- getURLContent(adress)
+api_endpoint <- "https://api.kraken.com/0/public/Ticker?pair=BTCEUR"
+raw_data <- getURLContent(api_endpoint)
 
-# Make the format more readable
+# Parse JSON response and structure data
 require(jsonlite)
-tmp <- fromJSON(ticker)$result[[1]]
-result <- data.frame(ask=tmp$a[1], bid=tmp$b[1], last=tmp$c[1], open=tmp$o, low=tmp$l[1], high=tmp$h[1], volume=tmp$v[1], volumeQuote=NA, timestamp=NA)
+parsed_data <- fromJSON(raw_data)$result[[1]]
+market_data <- data.frame(
+  ask = parsed_data$a[1], 
+  bid = parsed_data$b[1], 
+  last = parsed_data$c[1], 
+  open = parsed_data$o, 
+  low = parsed_data$l[1], 
+  high = parsed_data$h[1], 
+  volume = parsed_data$v[1], 
+  volumeQuote = NA, 
+  timestamp = NA
+)
 
-# Show result
+# Display results
 ```
 
-
 ```{r, warning=FALSE, message=FALSE, eval=TRUE, echo=FALSE}
-# Show result
+# Format and display market data
 library(kableExtra)
 options(knitr.table.format = "html")
 
-tmp <- result %>% 
+formatted_data <- market_data %>% 
   select(-volumeQuote, -timestamp)
-apply(tmp, 2, function(x){round(as.numeric(x),0)}) %>%
+apply(formatted_data, 2, function(x){round(as.numeric(x),0)}) %>%
   t() %>%
   kable() %>% 
   kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
-
-
-#Code resource
+# Comprehensive Function Library
 ***
 
-I've written a [set of functions](https://github.com/ymju86/Cryp-To/blob/master/FUNCTIONS/Public_Market_Functions.R) allowing to get the price of many different currencies for the 5 main exchanges. You can easily use these functions. For instance, type the code below in R:
+To facilitate systematic data collection across multiple exchanges, I have developed a comprehensive [function library](https://github.com/ymju86/Crypto-Arbitrage/blob/master/FUNCTIONS/Public_Market_Functions.R) that standardizes API interactions across five major cryptocurrency exchanges. This library provides unified access to market data regardless of the underlying exchange's API structure.
 
+**Usage Example:**
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
-# Source functions that are stored on github  
+# Load the standardized API functions from GitHub repository
 source("https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/FUNCTIONS/Public_Market_Functions.R")
 
-# Use it: price of the bitcoin on bitstamp  
+# Retrieve Bitcoin price from Bitstamp exchange
 get_bitstamp(Sys.time(), "BTCEUR")
 ```
 
-
-
-
-
-
-
-#Harvesting (a lot of) data
+# Large-Scale Data Harvesting Operation
 ***
 
-I've harvested crypto prices:
+This research project involved an extensive **data collection campaign** with the following specifications:
 
-- *for 2 weeks* - between the `5th and the 19th of February`.
-- *for 5 currencies* - bitcoin (BTC), bitcoin cash (BCH), etherum (ETH), litecoin (LTC) and ripple (XRP)
-- *for 5 exchanges* - Coinbase, Kraken, Bitstamp, Bitfinex and Cex.io
+- **Duration**: 14-day continuous monitoring period (February 5-19)
+- **Cryptocurrencies**: 5 major digital assets - Bitcoin (BTC), Bitcoin Cash (BCH), Ethereum (ETH), Litecoin (LTC), and Ripple (XRP)
+- **Exchanges**: 5 leading platforms - Coinbase, Kraken, Bitstamp, Bitfinex, and CEX.io
+- **Data Points**: Over 800,000 individual price observations
+- **Frequency**: Real-time data collection every few seconds
 
-
-This was easily done using an infinite loop that called the functions described above. The exact script used for this work is available [here](https://github.com/ymju86/Crypto-Arbitrage/blob/master/FUNCTIONS/Run_API_public_market_harvest.R). 800,000 data points were recovered.
+The data harvesting was implemented using an **automated collection system** that continuously called the API functions described above. The complete implementation script is available [here](https://github.com/ymju86/Crypto-Arbitrage/blob/master/FUNCTIONS/Run_API_public_market_harvest.R).
 
 <br>
 
-
-The resulting dataset is available on [github]() in a compressed format. You can easily read it in R doing:
+**Data Access:**
+The complete dataset is publicly available on GitHub in compressed format. You can load and analyze the data using the following R code:
 
 ```{r, warning=FALSE, message=FALSE, eval=FALSE}
- # Load the data
-load(url("https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata"))  
+# Load the comprehensive market dataset
+load("../DATA/public_ticker_harvest.Rdata")  
 
-# Have a look to the first lines
+# Examine the dataset structure
 head(Ticker)
 ```
 
 <br>
 
-As a teaser, here is the evolution of the etherum price on Bitstamp on this period of time:
+**Data Visualization Preview:**
+As a demonstration of the dataset's richness, here's the Ethereum price evolution on Bitstamp during the collection period:
 
 ```{r, fig.align="center", warning=FALSE, cache=TRUE, fig.width=9, message=FALSE, fig.height=4}
-# Load the data
-load(url("https://raw.githubusercontent.com/ymju86/Crypto-Arbitrage/master/DATA/public_ticker_harvest.Rdata"))
+# Load the comprehensive dataset
+load("../DATA/public_ticker_harvest.Rdata")
 
-# Make the plot
+# Create price evolution visualization
 library(hrbrthemes)
 Ticker %>%
   filter( symbol == "ETHEUR" ) %>%
@@ -151,26 +144,24 @@ Ticker %>%
   ggplot( aes(x=time, y=as.numeric(last))) +
     geom_ribbon(aes(ymin=450, ymax=as.numeric(last)),  fill="#69b3a2", color="transparent", alpha=0.5) +
     geom_line(color="#69b3a2") +
-    ggtitle("Evolution of Etherum price on the period") +
-    ylab("bitcoin price ($)") +
+    ggtitle("Ethereum Price Evolution During Data Collection Period") +
+    ylab("Ethereum Price (EUR)") +
     theme_ipsum() +
     theme(
       plot.title = element_text(size=12)
     )
 ```
 
-
-
-#Next step
+# Next Phase: Market Analysis
 ***
-The next step take this dataset and quantifies the differences between platform. If differences are big enough, we have a chance to perform arbitrage.
+
+With this comprehensive dataset in hand, the next phase involves **quantitative analysis** of price differences between exchanges. If these differences prove significant enough, they may present viable arbitrage opportunities.
 
 <br>
 <center>
-<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">Quantifying differences</a>
+<a class="btn btn-primary" href="https://ymju86.github.io/Crypto-Arbitrage/CONTENT/differences.html">Analyze Price Differences →</a>
 </center>
 <br><br>
-
 
 </div>
 
